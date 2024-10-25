@@ -1,0 +1,2 @@
+class HiraganaConversionsController < ApplicationController
+end
