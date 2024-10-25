@@ -15,6 +15,6 @@ class UserSessionsController < ApplicationController
 
   def destroy
     logout
-    redirect_to root_path, status: :see_other # POSTリクエスト後の新しいページへのGETリクエスト移動が促し、フォームの再送信を防ぐ
+    redirect_to root_path, status: :see_other # POSTリクエスト後の新しいページへのGETリクエスト移動が促すことで、フォームの再送信を防ぐ
   end
 end
