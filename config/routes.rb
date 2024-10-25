@@ -15,13 +15,13 @@ Rails.application.routes.draw do
   root "static_pages#top"
   
   # ログイン関連のルート
-  get 'login', to: 'user_sessions#new', as: 'login'
+  get 'login', to: 'user_sessions#new', as: :login
   post 'login', to: 'user_sessions#create' 
-  delete 'logout', to: 'user_sessions#destroy', as: 'logout'
+  delete 'logout', to: 'user_sessions#destroy', as: :logout
 
   # 新規登録関連のルート
   resources :users, only: [:new, :create]
 
   # ひらがな変換関連のルート
-  resources :hiragana_conversions, only: [:new, :create, :show]
+  resources :hiragana_conversions, only: [:hiragana_input, :new, :create, :show]
 end
