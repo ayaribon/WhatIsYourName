@@ -4,7 +4,7 @@ services:
     environment:
       TZ: Asia/Tokyo
       MYSQL_ROOT_PASSWORD: password  # ルートパスワード
-      MYSQL_DATABASE: myapp_development      # 初期データベース名
+      MYSQL_DATABASE: myapp_test      # 初期データベース名
     volumes:
       - mysql_data:/var/lib/mysql
     ports:
