@@ -19,7 +19,7 @@ default: &default
 
 development:
   <<: *default
-  database: myapp_development
+  database: what-is-your-name_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -27,7 +27,7 @@ development:
 test:
   adapter: mysql2
   encoding: utf8
-  database: myapp_test
+  database: what-is-your-name_test
   username: root
   password: password
   host: db
@@ -55,6 +55,6 @@ test:
 #
 production:
   <<: *default
-  database: myapp_production
-  username: myapp
+  database: what-is-your-name_production
+  username: root
   password: <%= ENV["MYAPP_DATABASE_PASSWORD"] %>

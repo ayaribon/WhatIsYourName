@@ -71,7 +71,7 @@ jobs:
       - name: Run RSpec
         env:
           RAILS_ENV: test
-          DATABASE_URL: mysql2://127.0.0.1:3306
+          DATABASE_URL: mysql2://root:password@127.0.0.1:3306/what-is-your-name_test
           # REDIS_URL: redis://localhost:6379/0
         run: bundle exec rspec
 
