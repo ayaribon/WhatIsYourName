@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
 
   before_action :require_login
 
+  add_flash_types :success, :danger, :notice
+
   private
 
   def not_authenticated
