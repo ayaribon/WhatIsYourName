@@ -5,6 +5,7 @@ services:
       TZ: Asia/Tokyo
       MYSQL_ROOT_PASSWORD: password  # ルートパスワード
       MYSQL_DATABASE: myapp_test      # 初期データベース名
+      DATABASE_URL: mysql2://root:password@db/myapp_test
     volumes:
       - mysql_data:/var/lib/mysql
     ports:
