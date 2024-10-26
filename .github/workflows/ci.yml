@@ -68,6 +68,12 @@ jobs:
           DATABASE_URL: mysql2://root:password@127.0.0.1:3306/what-is-your-name_test
         run: bin/rails db:create
 
+      # アセットのプリコンパイルを追加
+      - name: Precompile assets
+        env:
+          RAILS_ENV: test
+        run: bin/rails assets:precompile
+
       - name: Run RSpec
         env:
           RAILS_ENV: test
