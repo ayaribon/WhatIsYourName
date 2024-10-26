@@ -16,6 +16,7 @@ RSpec.describe "Users", type: :system do
       context 'with valid attributes' do
         it 'redirects to the login path when enrollment is successful' do
           visit new_user_path
+          fill_in 'nickname', with: 'nickname'
           fill_in 'email', with: 'email@example.com'
           fill_in 'password', with: 'password'
           fill_in 'password confirmation', with: 'password'
@@ -28,6 +29,7 @@ RSpec.describe "Users", type: :system do
       context 'without email' do
         it 'renders the same path when enrollment is not successful' do
           visit new_user_path
+          fill_in 'nickname', with: 'nickname'
           fill_in 'email', with: ''
           fill_in 'password', with: 'password'
           fill_in 'password confirmation', with: 'password'
@@ -41,6 +43,7 @@ RSpec.describe "Users", type: :system do
         it 'renders the same path when enrollment is not successful' do
           existed_user = create(:user)
           visit new_user_path
+          fill_in 'nickname', with: 'nickname'
           fill_in 'email', with: existed_user.email
           fill_in 'password', with: 'password'
           fill_in 'password confirmation', with: 'password'
