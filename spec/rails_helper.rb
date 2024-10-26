@@ -40,7 +40,8 @@ end
 # ドライバをseleniumに設定
 Capybara.javascript_driver = :selenium
 Capybara.default_driver = :selenium
-Selenium::WebDriver::Chrome.path = '/path/to/chromedriver'
+Selenium::WebDriver::Chrome.path = '/usr/bin/chromedriver'
+Webdrivers::Chromedriver.required_version = nil
 RSpec.configure do |config|
   config.include Capybara::DSL
   config.include FactoryBot::Syntax::Methods
