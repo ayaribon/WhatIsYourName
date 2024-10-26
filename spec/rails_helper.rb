@@ -35,6 +35,9 @@ end
 RSpec.configure do |config|
   config.include Capybara::DSL
   config.include FactoryBot::Syntax::Methods
+  config.before(:each, type: :system) do
+    driven_by :selenium_chrome
+  end
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = [
     Rails.root.join('spec/fixtures')
