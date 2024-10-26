@@ -1,0 +1,2 @@
+class Lao < ApplicationRecord
+end
