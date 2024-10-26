@@ -7,15 +7,14 @@ class UserSessionsController < ApplicationController
     @user = login(params[:email], params[:password])
 
     if @user
-      redirect_to root_path, success: "ログインに成功しました"
+      redirect_to root_path
     else
-      flash.now[:danger] = "ログインに失敗しました"
-      render :new, status: :unprocessable_entity
+      render :new
     end
   end
 
   def destroy
     logout
-    redirect_to root_path, status: :see_other, notice: "ログアウトしました" # POSTリクエスト後の新しいページへのGETリクエスト移動が促すことで、フォームの再送信を防ぐ
+    redirect_to root_path, status: :see_other # POSTリクエスト後の新しいページへのGETリクエスト移動が促すことで、フォームの再送信を防ぐ
   end
 end
