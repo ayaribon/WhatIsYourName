@@ -38,6 +38,11 @@ RSpec.configure do |config|
   config.before(:each, type: :system) do
     driven_by :rack_test
   end
+  config.after(:each, type: :system) do |example|
+    if example.exception
+      page.save_screenshot("tmp/screenshots/#{example.metadata[:full_description].tr(' ', '_')}.png")
+    end
+  end
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = [
     Rails.root.join('spec/fixtures')
