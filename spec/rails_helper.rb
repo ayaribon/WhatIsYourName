@@ -1,5 +1,7 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
+require 'capybara/rspec'
+require 'selenium-webdriver'
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 # Prevent database truncation if the environment is production
@@ -32,12 +34,21 @@ begin
 rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
+Capybara.register_driver :selenium do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
+end
+# ドライバをseleniumに設定
+Capybara.javascript_driver = :selenium
+Capybara.default_driver = :selenium
 RSpec.configure do |config|
   config.include Capybara::DSL
   config.include FactoryBot::Syntax::Methods
+
+  # type: :system のテストに対してseleniumを使用する設定
   config.before(:each, type: :system) do
-    driven_by :rack_test
+    driven_by :selenium
   end
+
   config.after(:each, type: :system) do |example|
     if example.exception
       page.save_screenshot("tmp/screenshots/#{example.metadata[:full_description].tr(' ', '_')}.png")
