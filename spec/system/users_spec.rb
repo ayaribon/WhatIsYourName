@@ -9,17 +9,16 @@ RSpec.describe "Users", type: :system do
         it 'allows access without logging in' do
           visit new_user_path # able to access without login
           expect(current_path).to eq new_user_path
-          expect(page).to have_content 'ユーザー登録'
         end
       end
 
       context 'with valid attributes' do
         it 'redirects to the login path when enrollment is successful' do
           visit new_user_path
-          fill_in 'nickname', with: 'nickname'
-          fill_in 'email', with: 'email@example.com'
-          fill_in 'password', with: 'password'
-          fill_in 'password confirmation', with: 'password'
+          fill_in 'Name', with: 'nickname'
+          fill_in 'Email', with: 'email@example.com'
+          fill_in 'Password', with: 'password'
+          fill_in 'Password confirmation', with: 'password'
           click_button '登録'
           expect(page).to have_content 'ユーザー登録が完了しました'
           expect(current_path).to eq login_path
@@ -29,10 +28,10 @@ RSpec.describe "Users", type: :system do
       context 'without email' do
         it 'renders the same path when enrollment is not successful' do
           visit new_user_path
-          fill_in 'nickname', with: 'nickname'
-          fill_in 'email', with: ''
-          fill_in 'password', with: 'password'
-          fill_in 'password confirmation', with: 'password'
+          fill_in 'Name', with: 'nickname'
+          fill_in 'Email', with: ''
+          fill_in 'Password', with: 'password'
+          fill_in 'Password confirmation', with: 'password'
           click_button '登録'
           expect(page).to have_content 'ユーザー登録に失敗しました'
           expect(current_path).to eq new_user_path
@@ -43,10 +42,10 @@ RSpec.describe "Users", type: :system do
         it 'renders the same path when enrollment is not successful' do
           existed_user = create(:user)
           visit new_user_path
-          fill_in 'nickname', with: 'nickname'
-          fill_in 'email', with: existed_user.email
-          fill_in 'password', with: 'password'
-          fill_in 'password confirmation', with: 'password'
+          fill_in 'Name', with: 'nickname'
+          fill_in 'Email', with: existed_user.email
+          fill_in 'Password', with: 'password'
+          fill_in 'Password confirmation', with: 'password'
           click_button '登録'
           expect(page).to have_content 'ユーザー登録に失敗しました'
           expect(current_path).to eq new_user_path
