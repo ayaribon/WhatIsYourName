@@ -1,9 +1,9 @@
-class Hiragana < ApplicationRecord
-  has_many :hiragana_laos
+class HiraganaLao < ApplicationRecord
+  belongs_to :hiragana
 
   # バリデーション
-  validates :character, presence: true
-  validates :romaji, presence: true
+  validates :hiragana, presence: true
+  validates :lao, presence: true
   validates :case_type, presence: true, inclusion: { in: %w[normal short special_case] }
 
   # スコープ（必要に応じて）
