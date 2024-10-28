@@ -9,407 +9,136 @@
 #   end
 
 hiragana_records = [
-  { character: 'あ', romaji: 'a', case_type: 'normal' },
-  { character: 'あ', romaji: 'a', case_type: 'short' },
-  { character: 'あ', romaji: 'a', case_type: 'special_case' },
+  { character: 'あ', romaji: 'a' },
+  { character: 'い', romaji: 'i' },
+  { character: 'う', romaji: 'u' },
+  { character: 'え', romaji: 'e' },
+  { character: 'お', romaji: 'o' },
+
+  { character: 'か', romaji: 'a' },
+  { character: 'き', romaji: 'i' },
+  { character: 'く', romaji: 'u' },
+  { character: 'け', romaji: 'e' },
+  { character: 'こ', romaji: 'o' },
+
+  { character: 'さ', romaji: 'a' },
+  { character: 'し', romaji: 'i' },
+  { character: 'す', romaji: 'u' },
+  { character: 'せ', romaji: 'e' },
+  { character: 'そ', romaji: 'o' },
+
+  { character: 'た', romaji: 'a' },
+  { character: 'ち', romaji: 'i' },
+  { character: 'つ', romaji: 'u' },
+  { character: 'て', romaji: 'e' },
+  { character: 'と', romaji: 'o' },
+
+  { character: 'な', romaji: 'a' },
+  { character: 'に', romaji: 'i' },
+  { character: 'ぬ', romaji: 'u' },
+  { character: 'ね', romaji: 'e' },
+  { character: 'の', romaji: 'o' },
+
+  { character: 'は', romaji: 'a' },
+  { character: 'ひ', romaji: 'i' },
+  { character: 'ふ', romaji: 'u' },
+  { character: 'へ', romaji: 'e' },
+  { character: 'ほ', romaji: 'o' },
+
+  { character: 'ま', romaji: 'a' },
+  { character: 'み', romaji: 'i' },
+  { character: 'む', romaji: 'u' },
+  { character: 'め', romaji: 'e' },
+  { character: 'も', romaji: 'o' },
+
+  { character: 'や', romaji: 'a' },
+  { character: 'ゆ', romaji: 'u' },
+  { character: 'よ', romaji: 'o' },
+
+  { character: 'ら', romaji: 'a' },
+  { character: 'り', romaji: 'i' },
+  { character: 'る', romaji: 'u' },
+  { character: 'れ', romaji: 'e' },
+  { character: 'ろ', romaji: 'o' },
+
+  { character: 'わ', romaji: 'a' },
+  { character: 'を', romaji: 'o' },
   
-  { character: 'い', romaji: 'i', case_type: 'normal' },
-  { character: 'い', romaji: 'i', case_type: 'short' },
-  { character: 'い', romaji: 'i', case_type: 'special_case' },
+  { character: 'ん', romaji: 'n' },
   
-  { character: 'う', romaji: 'u', case_type: 'normal' },
-  { character: 'う', romaji: 'u', case_type: 'short' },
-  { character: 'う', romaji: 'u', case_type: 'special_case' },
+  { character: 'が', romaji: 'a' },
+  { character: 'ぎ', romaji: 'i' },
+  { character: 'ぐ', romaji: 'u' },
+  { character: 'げ', romaji: 'e' },
+  { character: 'ご', romaji: 'o' },
   
-  { character: 'え', romaji: 'e', case_type: 'normal' },
-  { character: 'え', romaji: 'e', case_type: 'short' },
-  { character: 'え', romaji: 'e', case_type: 'special_case' },
-  
-  { character: 'お', romaji: 'o', case_type: 'normal' },
-  { character: 'お', romaji: 'o', case_type: 'short' },
-  { character: 'お', romaji: 'o', case_type: 'special_case' },
-  
-  { character: 'か', romaji: 'a', case_type: 'normal' },
-  { character: 'か', romaji: 'a', case_type: 'short' },
-  { character: 'か', romaji: 'a', case_type: 'special_case' },
-  
-  { character: 'き', romaji: 'i', case_type: 'normal' },
-  { character: 'き', romaji: 'i', case_type: 'short' },
-  { character: 'き', romaji: 'i', case_type: 'special_case' },
-  
-  { character: 'く', romaji: 'u', case_type: 'normal' },
-  { character: 'く', romaji: 'u', case_type: 'short' },
-  { character: 'く', romaji: 'u', case_type: 'special_case' },
-  
-  { character: 'け', romaji: 'e', case_type: 'normal' },
-  { character: 'け', romaji: 'e', case_type: 'short' },
-  { character: 'け', romaji: 'e', case_type: 'special_case' },
-  
-  { character: 'こ', romaji: 'o', case_type: 'normal' },
-  { character: 'こ', romaji: 'o', case_type: 'short' },
-  { character: 'こ', romaji: 'o', case_type: 'special_case' },
+  { character: 'ざ', romaji: 'a' },
+  { character: 'じ', romaji: 'i' },
+  { character: 'ず', romaji: 'u' },
+  { character: 'ぜ', romaji: 'e' },
+  { character: 'ぞ', romaji: 'o' },
 
-  { character: 'さ', romaji: 'a', case_type: 'normal' },
-  { character: 'さ', romaji: 'a', case_type: 'short' },
-  { character: 'さ', romaji: 'a', case_type: 'special_case' },
+  { character: 'だ', romaji: 'a' },
+  { character: 'ぢ', romaji: 'i' },
+  { character: 'づ', romaji: 'u' },
+  { character: 'で', romaji: 'e' },
+  { character: 'ど', romaji: 'o' },
 
-  { character: 'し', romaji: 'i', case_type: 'normal' },
-  { character: 'し', romaji: 'i', case_type: 'short' },
-  { character: 'し', romaji: 'i', case_type: 'special_case' },
+  { character: 'ば', romaji: 'a' },
+  { character: 'び', romaji: 'i' },
+  { character: 'ぶ', romaji: 'u' },
+  { character: 'べ', romaji: 'e' },
+  { character: 'ぼ', romaji: 'o' },
 
-  { character: 'す', romaji: 'u', case_type: 'normal' },
-  { character: 'す', romaji: 'u', case_type: 'short' },
-  { character: 'す', romaji: 'u', case_type: 'special_case' },
+  { character: 'ぱ', romaji: 'a' },
+  { character: 'ぴ', romaji: 'i' },
+  { character: 'ぷ', romaji: 'u' },
+  { character: 'ぺ', romaji: 'e' },
+  { character: 'ぽ', romaji: 'o' },
 
-  { character: 'せ', romaji: 'e', case_type: 'normal' },
-  { character: 'せ', romaji: 'e', case_type: 'short' },
-  { character: 'せ', romaji: 'e', case_type: 'special_case' },
+  { character: 'きゃ', romaji: 'a' },
+  { character: 'きゅ', romaji: 'u' },
+  { character: 'きょ', romaji: 'o' },
 
-  { character: 'そ', romaji: 'o', case_type: 'normal' },
-  { character: 'そ', romaji: 'o', case_type: 'short' },
-  { character: 'そ', romaji: 'o', case_type: 'special_case' },
+  { character: 'しゃ', romaji: 'a' },
+  { character: 'しゅ', romaji: 'u' },
+  { character: 'しょ', romaji: 'o' },
 
-  { character: 'た', romaji: 'a', case_type: 'normal' },
-  { character: 'た', romaji: 'a', case_type: 'short' },
-  { character: 'た', romaji: 'a', case_type: 'special_case' },
+  { character: 'ちゃ', romaji: 'a' },
+  { character: 'ちゅ', romaji: 'u' },
+  { character: 'ちょ', romaji: 'o' },
 
-  { character: 'ち', romaji: 'i', case_type: 'normal' },
-  { character: 'ち', romaji: 'i', case_type: 'short' },
-  { character: 'ち', romaji: 'i', case_type: 'special_case' },
+  { character: 'にゃ', romaji: 'a' },
+  { character: 'にゅ', romaji: 'u' },
+  { character: 'にょ', romaji: 'o' },
 
-  { character: 'つ', romaji: 'u', case_type: 'normal' },
-  { character: 'つ', romaji: 'u', case_type: 'short' },
-  { character: 'つ', romaji: 'u', case_type: 'special_case' },
+  { character: 'ひゃ', romaji: 'a' },
+  { character: 'ひゅ', romaji: 'u' },
+  { character: 'ひょ', romaji: 'o' },
 
-  { character: 'て', romaji: 'e', case_type: 'normal' },
-  { character: 'て', romaji: 'e', case_type: 'short' },
-  { character: 'て', romaji: 'e', case_type: 'special_case' },
+  { character: 'みゃ', romaji: 'a' },
+  { character: 'みゅ', romaji: 'u' },
+  { character: 'みょ', romaji: 'o' },
 
-  { character: 'と', romaji: 'o', case_type: 'normal' },
-  { character: 'と', romaji: 'o', case_type: 'short' },
-  { character: 'と', romaji: 'o', case_type: 'special_case' },
+  { character: 'りゃ', romaji: 'a' },
+  { character: 'りゅ', romaji: 'u' },
+  { character: 'りょ', romaji: 'o' },
 
-  { character: 'な', romaji: 'a', case_type: 'normal' },
-  { character: 'な', romaji: 'a', case_type: 'short' },
-  { character: 'な', romaji: 'a', case_type: 'special_case' },
+  { character: 'ぎゃ', romaji: 'a' },
+  { character: 'ぎゅ', romaji: 'u' },
+  { character: 'ぎょ', romaji: 'o' },
 
-  { character: 'に', romaji: 'i', case_type: 'normal' },
-  { character: 'に', romaji: 'i', case_type: 'short' },
-  { character: 'に', romaji: 'i', case_type: 'special_case' },
+  { character: 'じゃ', romaji: 'a' },
+  { character: 'じゅ', romaji: 'u' },
+  { character: 'じょ', romaji: 'o' },
 
-  { character: 'ぬ', romaji: 'u', case_type: 'normal' },
-  { character: 'ぬ', romaji: 'u', case_type: 'short' },
-  { character: 'ぬ', romaji: 'u', case_type: 'special_case' },
+  { character: 'びゃ', romaji: 'a' },
+  { character: 'びゅ', romaji: 'u' },
+  { character: 'びょ', romaji: 'o' },
 
-  { character: 'ね', romaji: 'e', case_type: 'normal' },
-  { character: 'ね', romaji: 'e', case_type: 'short' },
-  { character: 'ね', romaji: 'e', case_type: 'special_case' },
-
-  { character: 'の', romaji: 'o', case_type: 'normal' },
-  { character: 'の', romaji: 'o', case_type: 'short' },
-  { character: 'の', romaji: 'o', case_type: 'special_case' },
-
-  { character: 'は', romaji: 'a', case_type: 'normal' },
-  { character: 'は', romaji: 'a', case_type: 'short' },
-  { character: 'は', romaji: 'a', case_type: 'special_case' },
-
-  { character: 'ひ', romaji: 'i', case_type: 'normal' },
-  { character: 'ひ', romaji: 'i', case_type: 'short' },
-  { character: 'ひ', romaji: 'i', case_type: 'special_case' },
-
-  { character: 'ふ', romaji: 'u', case_type: 'normal' },
-  { character: 'ふ', romaji: 'u', case_type: 'short' },
-  { character: 'ふ', romaji: 'u', case_type: 'special_case' },
-
-  { character: 'へ', romaji: 'e', case_type: 'normal' },
-  { character: 'へ', romaji: 'e', case_type: 'short' },
-  { character: 'へ', romaji: 'e', case_type: 'special_case' },
-
-  { character: 'ほ', romaji: 'o', case_type: 'normal' },
-  { character: 'ほ', romaji: 'o', case_type: 'short' },
-  { character: 'ほ', romaji: 'o', case_type: 'special_case' },
-
-  { character: 'ま', romaji: 'a', case_type: 'normal' },
-  { character: 'ま', romaji: 'a', case_type: 'short' },
-  { character: 'ま', romaji: 'a', case_type: 'special_case' },
-
-  { character: 'み', romaji: 'i', case_type: 'normal' },
-  { character: 'み', romaji: 'i', case_type: 'short' },
-  { character: 'み', romaji: 'i', case_type: 'special_case' },
-
-  { character: 'む', romaji: 'u', case_type: 'normal' },
-  { character: 'む', romaji: 'u', case_type: 'short' },
-  { character: 'む', romaji: 'u', case_type: 'special_case' },
-
-  { character: 'め', romaji: 'e', case_type: 'normal' },
-  { character: 'め', romaji: 'e', case_type: 'short' },
-  { character: 'め', romaji: 'e', case_type: 'special_case' },
-
-  { character: 'も', romaji: 'o', case_type: 'normal' },
-  { character: 'も', romaji: 'o', case_type: 'short' },
-  { character: 'も', romaji: 'o', case_type: 'special_case' },
-
-  { character: 'や', romaji: 'a', case_type: 'normal' },
-  { character: 'や', romaji: 'a', case_type: 'short' },
-  { character: 'や', romaji: 'a', case_type: 'special_case' },
-
-  { character: 'ゆ', romaji: 'u', case_type: 'normal' },
-  { character: 'ゆ', romaji: 'u', case_type: 'short' },
-  { character: 'ゆ', romaji: 'u', case_type: 'special_case' },
-
-  { character: 'よ', romaji: 'o', case_type: 'normal' },
-  { character: 'よ', romaji: 'o', case_type: 'short' },
-  { character: 'よ', romaji: 'o', case_type: 'special_case' },
-
-  { character: 'ら', romaji: 'a', case_type: 'normal' },
-  { character: 'ら', romaji: 'a', case_type: 'short' },
-  { character: 'ら', romaji: 'a', case_type: 'special_case' },
-
-  { character: 'り', romaji: 'i', case_type: 'normal' },
-  { character: 'り', romaji: 'i', case_type: 'short' },
-  { character: 'り', romaji: 'i', case_type: 'special_case' },
-
-  { character: 'る', romaji: 'u', case_type: 'normal' },
-  { character: 'る', romaji: 'u', case_type: 'short' },
-  { character: 'る', romaji: 'u', case_type: 'special_case' },
-
-  { character: 'れ', romaji: 'e', case_type: 'normal' },
-  { character: 'れ', romaji: 'e', case_type: 'short' },
-  { character: 'れ', romaji: 'e', case_type: 'special_case' },
-
-  { character: 'ろ', romaji: 'o', case_type: 'normal' },
-  { character: 'ろ', romaji: 'o', case_type: 'short' },
-  { character: 'ろ', romaji: 'o', case_type: 'special_case' },
-
-  { character: 'わ', romaji: 'a', case_type: 'normal' },
-  { character: 'わ', romaji: 'a', case_type: 'short' },
-  { character: 'わ', romaji: 'a', case_type: 'special_case' },
-
-  { character: 'を', romaji: 'o', case_type: 'normal' },
-  { character: 'を', romaji: 'o', case_type: 'short' },
-  { character: 'を', romaji: 'o', case_type: 'special_case' },
-
-  { character: 'ん', romaji: 'n', case_type: 'normal' },
-  { character: 'ん', romaji: 'n', case_type: 'short' },
-  { character: 'ん', romaji: 'n', case_type: 'special_case' },
-
-  # 濁音
-  # が行
-  { character: 'が', romaji: 'a', case_type: 'normal' },
-  { character: 'が', romaji: 'a', case_type: 'short' },
-  { character: 'が', romaji: 'a', case_type: 'special_case' },
-  { character: 'ぎ', romaji: 'i', case_type: 'normal' },
-  { character: 'ぎ', romaji: 'i', case_type: 'short' },
-  { character: 'ぎ', romaji: 'i', case_type: 'special_case' },
-  { character: 'ぐ', romaji: 'u', case_type: 'normal' },
-  { character: 'ぐ', romaji: 'u', case_type: 'short' },
-  { character: 'ぐ', romaji: 'u', case_type: 'special_case' },
-  { character: 'げ', romaji: 'e', case_type: 'normal' },
-  { character: 'げ', romaji: 'e', case_type: 'short' },
-  { character: 'げ', romaji: 'e', case_type: 'special_case' },
-  { character: 'ご', romaji: 'o', case_type: 'normal' },
-  { character: 'ご', romaji: 'o', case_type: 'short' },
-  { character: 'ご', romaji: 'o', case_type: 'special_case' },
-
-  # ざ行
-  { character: 'ざ', romaji: 'a', case_type: 'normal' },
-  { character: 'ざ', romaji: 'a', case_type: 'short' },
-  { character: 'ざ', romaji: 'a', case_type: 'special_case' },
-  { character: 'じ', romaji: 'i', case_type: 'normal' },
-  { character: 'じ', romaji: 'i', case_type: 'short' },
-  { character: 'じ', romaji: 'i', case_type: 'special_case' },
-  { character: 'ず', romaji: 'u', case_type: 'normal' },
-  { character: 'ず', romaji: 'u', case_type: 'short' },
-  { character: 'ず', romaji: 'u', case_type: 'special_case' },
-  { character: 'ぜ', romaji: 'e', case_type: 'normal' },
-  { character: 'ぜ', romaji: 'e', case_type: 'short' },
-  { character: 'ぜ', romaji: 'e', case_type: 'special_case' },
-  { character: 'ぞ', romaji: 'o', case_type: 'normal' },
-  { character: 'ぞ', romaji: 'o', case_type: 'short' },
-  { character: 'ぞ', romaji: 'o', case_type: 'special_case' },
-
-  # だ行
-  { character: 'だ', romaji: 'a', case_type: 'normal' },
-  { character: 'だ', romaji: 'a', case_type: 'short' },
-  { character: 'だ', romaji: 'a', case_type: 'special_case' },
-  { character: 'ぢ', romaji: 'i', case_type: 'normal' },
-  { character: 'ぢ', romaji: 'i', case_type: 'short' },
-  { character: 'ぢ', romaji: 'i', case_type: 'special_case' },
-  { character: 'づ', romaji: 'u', case_type: 'normal' },
-  { character: 'づ', romaji: 'u', case_type: 'short' },
-  { character: 'づ', romaji: 'u', case_type: 'special_case' },
-  { character: 'で', romaji: 'e', case_type: 'normal' },
-  { character: 'で', romaji: 'e', case_type: 'short' },
-  { character: 'で', romaji: 'e', case_type: 'special_case' },
-  { character: 'ど', romaji: 'o', case_type: 'normal' },
-  { character: 'ど', romaji: 'o', case_type: 'short' },
-  { character: 'ど', romaji: 'o', case_type: 'special_case' },
-
-  # ば行
-  { character: 'ば', romaji: 'a', case_type: 'normal' },
-  { character: 'ば', romaji: 'a', case_type: 'short' },
-  { character: 'ば', romaji: 'a', case_type: 'special_case' },
-  { character: 'び', romaji: 'i', case_type: 'normal' },
-  { character: 'び', romaji: 'i', case_type: 'short' },
-  { character: 'び', romaji: 'i', case_type: 'special_case' },
-  { character: 'ぶ', romaji: 'u', case_type: 'normal' },
-  { character: 'ぶ', romaji: 'u', case_type: 'short' },
-  { character: 'ぶ', romaji: 'u', case_type: 'special_case' },
-  { character: 'べ', romaji: 'e', case_type: 'normal' },
-  { character: 'べ', romaji: 'e', case_type: 'short' },
-  { character: 'べ', romaji: 'e', case_type: 'special_case' },
-  { character: 'ぼ', romaji: 'o', case_type: 'normal' },
-  { character: 'ぼ', romaji: 'o', case_type: 'short' },
-  { character: 'ぼ', romaji: 'o', case_type: 'special_case' },
-
-  # ぱ行
-  { character: 'ぱ', romaji: 'a', case_type: 'normal' },
-  { character: 'ぱ', romaji: 'a', case_type: 'short' },
-  { character: 'ぱ', romaji: 'a', case_type: 'special_case' },
-  { character: 'ぴ', romaji: 'i', case_type: 'normal' },
-  { character: 'ぴ', romaji: 'i', case_type: 'short' },
-  { character: 'ぴ', romaji: 'i', case_type: 'special_case' },
-  { character: 'ぷ', romaji: 'u', case_type: 'normal' },
-  { character: 'ぷ', romaji: 'u', case_type: 'short' },
-  { character: 'ぷ', romaji: 'u', case_type: 'special_case' },
-  { character: 'ぺ', romaji: 'e', case_type: 'normal' },
-  { character: 'ぺ', romaji: 'e', case_type: 'short' },
-  { character: 'ぺ', romaji: 'e', case_type: 'special_case' },
-  { character: 'ぽ', romaji: 'o', case_type: 'normal' },
-  { character: 'ぽ', romaji: 'o', case_type: 'short' },
-  { character: 'ぽ', romaji: 'o', case_type: 'special_case' },
-
-  # きゃ行
-  { character: 'きゃ', romaji: 'a', case_type: 'normal' },
-  { character: 'きゃ', romaji: 'a', case_type: 'short' },
-  { character: 'きゃ', romaji: 'a', case_type: 'special_case' },
-  { character: 'きゅ', romaji: 'u', case_type: 'normal' },
-  { character: 'きゅ', romaji: 'u', case_type: 'short' },
-  { character: 'きゅ', romaji: 'u', case_type: 'special_case' },
-  { character: 'きょ', romaji: 'o', case_type: 'normal' },
-  { character: 'きょ', romaji: 'o', case_type: 'short' },
-  { character: 'きょ', romaji: 'o', case_type: 'special_case' },
-
-  # しゃ行
-  { character: 'しゃ', romaji: 'a', case_type: 'normal' },
-  { character: 'しゃ', romaji: 'a', case_type: 'short' },
-  { character: 'しゃ', romaji: 'a', case_type: 'special_case' },
-  { character: 'しゅ', romaji: 'u', case_type: 'normal' },
-  { character: 'しゅ', romaji: 'u', case_type: 'short' },
-  { character: 'しゅ', romaji: 'u', case_type: 'special_case' },
-  { character: 'しょ', romaji: 'o', case_type: 'normal' },
-  { character: 'しょ', romaji: 'o', case_type: 'short' },
-  { character: 'しょ', romaji: 'o', case_type: 'special_case' },
-
-  # ちゃ行
-  { character: 'ちゃ', romaji: 'a', case_type: 'normal' },
-  { character: 'ちゃ', romaji: 'a', case_type: 'short' },
-  { character: 'ちゃ', romaji: 'a', case_type: 'special_case' },
-  { character: 'ちゅ', romaji: 'u', case_type: 'normal' },
-  { character: 'ちゅ', romaji: 'u', case_type: 'short' },
-  { character: 'ちゅ', romaji: 'u', case_type: 'special_case' },
-  { character: 'ちょ', romaji: 'o', case_type: 'normal' },
-  { character: 'ちょ', romaji: 'o', case_type: 'short' },
-  { character: 'ちょ', romaji: 'o', case_type: 'special_case' },
-
-  # にゃ行
-  { character: 'にゃ', romaji: 'a', case_type: 'normal' },
-  { character: 'にゃ', romaji: 'a', case_type: 'short' },
-  { character: 'にゃ', romaji: 'a', case_type: 'special_case' },
-  { character: 'にゅ', romaji: 'u', case_type: 'normal' },
-  { character: 'にゅ', romaji: 'u', case_type: 'short' },
-  { character: 'にゅ', romaji: 'u', case_type: 'special_case' },
-  { character: 'にょ', romaji: 'o', case_type: 'normal' },
-  { character: 'にょ', romaji: 'o', case_type: 'short' },
-  { character: 'にょ', romaji: 'o', case_type: 'special_case' },
-
-  # ひゃ行
-  { character: 'ひゃ', romaji: 'a', case_type: 'normal' },
-  { character: 'ひゃ', romaji: 'a', case_type: 'short' },
-  { character: 'ひゃ', romaji: 'a', case_type: 'special_case' },
-  { character: 'ひゅ', romaji: 'u', case_type: 'normal' },
-  { character: 'ひゅ', romaji: 'u', case_type: 'short' },
-  { character: 'ひゅ', romaji: 'u', case_type: 'special_case' },
-  { character: 'ひょ', romaji: 'o', case_type: 'normal' },
-  { character: 'ひょ', romaji: 'o', case_type: 'short' },
-  { character: 'ひょ', romaji: 'o', case_type: 'special_case' },
-
-  # みゃ行
-  { character: 'みゃ', romaji: 'a', case_type: 'normal' },
-  { character: 'みゃ', romaji: 'a', case_type: 'short' },
-  { character: 'みゃ', romaji: 'a', case_type: 'special_case' },
-  { character: 'みゅ', romaji: 'u', case_type: 'normal' },
-  { character: 'みゅ', romaji: 'u', case_type: 'short' },
-  { character: 'みゅ', romaji: 'u', case_type: 'special_case' },
-  { character: 'みょ', romaji: 'o', case_type: 'normal' },
-  { character: 'みょ', romaji: 'o', case_type: 'short' },
-  { character: 'みょ', romaji: 'o', case_type: 'special_case' },
-
-  # りゃ行
-  { character: 'りゃ', romaji: 'a', case_type: 'normal' },
-  { character: 'りゃ', romaji: 'a', case_type: 'short' },
-  { character: 'りゃ', romaji: 'a', case_type: 'special_case' },
-  { character: 'りゅ', romaji: 'u', case_type: 'normal' },
-  { character: 'りゅ', romaji: 'u', case_type: 'short' },
-  { character: 'りゅ', romaji: 'u', case_type: 'special_case' },
-  { character: 'りょ', romaji: 'o', case_type: 'normal' },
-  { character: 'りょ', romaji: 'o', case_type: 'short' },
-  { character: 'りょ', romaji: 'o', case_type: 'special_case' },
-
-  # ぎゃ行
-  { character: 'ぎゃ', romaji: 'a', case_type: 'normal' },
-  { character: 'ぎゃ', romaji: 'a', case_type: 'short' },
-  { character: 'ぎゃ', romaji: 'a', case_type: 'special_case' },
-  { character: 'ぎゅ', romaji: 'u', case_type: 'normal' },
-  { character: 'ぎゅ', romaji: 'u', case_type: 'short' },
-  { character: 'ぎゅ', romaji: 'u', case_type: 'special_case' },
-  { character: 'ぎょ', romaji: 'o', case_type: 'normal' },
-  { character: 'ぎょ', romaji: 'o', case_type: 'short' },
-  { character: 'ぎょ', romaji: 'o', case_type: 'special_case' },
-
-  # じゃ行
-  { character: 'じゃ', romaji: 'a', case_type: 'normal' },
-  { character: 'じゃ', romaji: 'a', case_type: 'short' },
-  { character: 'じゃ', romaji: 'a', case_type: 'special_case' },
-  { character: 'じゅ', romaji: 'u', case_type: 'normal' },
-  { character: 'じゅ', romaji: 'u', case_type: 'short' },
-  { character: 'じゅ', romaji: 'u', case_type: 'special_case' },
-  { character: 'じょ', romaji: 'o', case_type: 'normal' },
-  { character: 'じょ', romaji: 'o', case_type: 'short' },
-  { character: 'じょ', romaji: 'o', case_type: 'special_case' },
-
-  # ぢゃ行
-  { character: 'ぢゃ', romaji: 'a', case_type: 'normal' },
-  { character: 'ぢゃ', romaji: 'a', case_type: 'short' },
-  { character: 'ぢゃ', romaji: 'a', case_type: 'special_case' },
-  { character: 'ぢゅ', romaji: 'u', case_type: 'normal' },
-  { character: 'ぢゅ', romaji: 'u', case_type: 'short' },
-  { character: 'ぢゅ', romaji: 'u', case_type: 'special_case' },
-  { character: 'ぢょ', romaji: 'o', case_type: 'normal' },
-  { character: 'ぢょ', romaji: 'o', case_type: 'short' },
-  { character: 'ぢょ', romaji: 'o', case_type: 'special_case' },
-
-  # びゃ行
-  { character: 'びゃ', romaji: 'a', case_type: 'normal' },
-  { character: 'びゃ', romaji: 'a', case_type: 'short' },
-  { character: 'びゃ', romaji: 'a', case_type: 'special_case' },
-  { character: 'びゅ', romaji: 'u', case_type: 'normal' },
-  { character: 'びゅ', romaji: 'u', case_type: 'short' },
-  { character: 'びゅ', romaji: 'u', case_type: 'special_case' },
-  { character: 'びょ', romaji: 'o', case_type: 'normal' },
-  { character: 'びょ', romaji: 'o', case_type: 'short' },
-  { character: 'びょ', romaji: 'o', case_type: 'special_case' },
-
-  # ぴゃ行
-  { character: 'ぴゃ', romaji: 'a', case_type: 'normal' },
-  { character: 'ぴゃ', romaji: 'a', case_type: 'short' },
-  { character: 'ぴゃ', romaji: 'a', case_type: 'special_case' },
-  { character: 'ぴゅ', romaji: 'u', case_type: 'normal' },
-  { character: 'ぴゅ', romaji: 'u', case_type: 'short' },
-  { character: 'ぴゅ', romaji: 'u', case_type: 'special_case' },
-  { character: 'ぴょ', romaji: 'o', case_type: 'normal' },
-  { character: 'ぴょ', romaji: 'o', case_type: 'short' },
-  { character: 'ぴょ', romaji: 'o', case_type: 'special_case' }
+  { character: 'ぴゃ', romaji: 'a' },
+  { character: 'ぴゅ', romaji: 'u' },
+  { character: 'ぴょ', romaji: 'o' },
 ]
 
 hiragana_lao_records = [
@@ -569,8 +298,9 @@ hiragana_lao_records = [
   { hiragana: 'を', lao: 'ວົ', case_type: 'special_case' },
 
   # ん行
-  { hiragana: 'ん', lao: 'ອົນ', case_type: 'normal' },
-  { hiragana: 'ん', lao: 'ອົນ', case_type: 'special_case' },
+  { hiragana: 'ん', lao: 'ນ', case_type: 'normal' },
+  { hiragana: 'ん', lao: 'ນ', case_type: 'short' },
+  { hiragana: 'ん', lao: 'ນ', case_type: 'special_case' },
 
   # が行
   { hiragana: 'が', lao: 'ກາ', case_type: 'normal' },
@@ -781,16 +511,17 @@ hiragana_lao_records = [
 
 # Hiraganaレコードの作成
 hiragana_records.each do |record|
-  Hiragana.find_or_create_by(character: record[:character], romaji: record[:romaji], case_type: record[:case_type])
+  hiragana = Hiragana.find_or_create_by(character: record[:character], romaji: record[:romaji])
+  puts "保存されたひらがな: #{hiragana.character} - #{hiragana.id}" # 保存されたひらがなを表示
 end
 
 # HiraganaLaoレコードの作成
 hiragana_lao_records.each do |record|
-  # characterとcase_typeを条件にHiraganaレコードを取得
-  hiragana = Hiragana.find_by(character: record[:hiragana], case_type: record[:case_type])
-
-  # hiraganaが存在する場合のみHiraganaLaoを作成
+  hiragana = Hiragana.find_by(character: record[:hiragana])
   if hiragana
-    HiraganaLao.find_or_create_by(hiragana_id: hiragana.id, lao: record[:lao], case_type: record[:case_type])
+    hiragana_lao = HiraganaLao.find_or_create_by(hiragana_id: hiragana.id, lao: record[:lao], case_type: record[:case_type])
+    puts "保存されたひらがなとラオス語: #{hiragana.character} - #{hiragana_lao.id} (ラオス語: #{hiragana_lao.lao})"
+  else
+    puts "ひらがなが見つかりませんでした: #{record[:hiragana]}"
   end
 end

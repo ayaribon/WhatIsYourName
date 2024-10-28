@@ -1,25 +1,5 @@
 class HiraganaLao < ApplicationRecord
   belongs_to :hiragana
-
-  # バリデーション
-  validates :hiragana, presence: true
-  validates :lao, presence: true
-  validates :case_type, presence: true, inclusion: { in: %w[normal short special_case] }
-
-  COMPOUND_HIRAGANA_LIST = [
-    'きゃ', 'きゅ', 'きょ',
-    'しゃ', 'しゅ', 'しょ',
-    'ちゃ', 'ちゅ', 'ちょ',
-    'にゃ', 'にゅ', 'にょ',
-    'ひゃ', 'ひゅ', 'ひょ',
-    'みゃ', 'みゅ', 'みょ',
-    'りゃ', 'りゅ', 'りょ',
-    'ぎゃ', 'ぎゅ', 'ぎょ',
-    'じゃ', 'じゅ', 'じょ',
-    'びゃ', 'びゅ', 'びょ',
-    'ぴゃ', 'ぴゅ', 'ぴょ'
-  ].freeze
-
   def self.convert_hiragana_to_lao(input)
     words = input.split(" ")
     lao_output = []
@@ -27,6 +7,7 @@ class HiraganaLao < ApplicationRecord
     words.each do |word|
       lao_word = ""
       word_length = word.length
+      skip_last_char = false  # 最後の語末の短母音処理のためのフラグ
 
       word.chars.each_with_index do |char, index|
         hiragana_record = Hiragana.find_by(character: char)
@@ -37,59 +18,56 @@ class HiraganaLao < ApplicationRecord
         end
 
         case_type = (index == word_length - 1) ? "short" : "normal"
+        romaji = hiragana_record.romaji  
 
-        # ひらがなをローマ字に変換するための処理
-        romaji = hiragana_record.romaji  # ひらがなのローマ字を取得
-
-        if index > 0 && romaji == word.chars[index - 1]
-          next if romaji.match(/[aiueo]/)  # 同じローマ字が連続し、かつそのローマ字が「あ、い、う、え、お」の場合
-        end
-
-        # 特殊ケース処理: 「ん」の処理
-        if char == 'ん'
-          case_type = 'special_case'
-          # 最後のひらがなに基づく変換を行う
-          if index > 0
-            previous_hiragana_record = Hiragana.where(character: word.chars[index - 1])
-            last_hiragana_case_type = (index == word_length - 1) ? "short" : "normal"
-            lao_translation = HiraganaLao.where(hiragana_id: last_hiragana_records.pluck(:id), case_type: 'short').first
-            lao_word += lao_translation&.lao || "ນ" # デフォルトの値
-          else
-            lao_word += "ນ" # 先頭の場合のデフォルト値
-          end
+        if index > 0 && romaji == word.chars[index - 1] && word.chars[index] =~ /[あいえうお]/
+          skip_last_char = true
           next
-        end
+        end        
 
         # 「う」の前が「お」の場合、スキップ
         if index > 0
           previous_hiragana_record = Hiragana.find_by(character: word.chars[index - 1])
           if previous_hiragana_record&.romaji == 'o' && hiragana_record.romaji == 'u'
+            skip_last_char = true
             next
           end
         end
 
-        # 通常の変換処理
-        lao_translation = HiraganaLao.find_by(hiragana_id: hiragana_record.id, case_type: case_type)
+        # 特殊ケース処理: 「ん」の処理
+        if char == 'ん'
+          case_type = 'special_case'  # 「ん」の場合は special_case
+
+          if index > 0
+            # 前のひらがなを取得
+            previous_hiragana_record = Hiragana.where(character: word.chars[index - 1])
+
+            # 最後の文字かどうかを確認し、case_typeを設定
+            last_hiragana_case_type = (index == word_length - 1) ? "short" : "normal"
+
+            # 「special_case」に基づく変換を追加
+            lao_translation = HiraganaLao.where(hiragana_id: previous_hiragana_record.pluck(:id), case_type: case_type).first
+            lao_word += lao_translation&.lao || "ນ" # デフォルトの値
+          else
+            # 先頭に「ん」がある場合のデフォルト値
+            lao_word += "ນ"
+          end
+
+          next
+        end
+
+        lao_translation = HiraganaLao.find_by(hiragana_id: hiragana_record.id, case_type: "normal")
 
         if lao_translation
           lao_word += lao_translation.lao
-        else
-          puts "No Lao translation found for #{char} with case_type #{case_type}"
         end
       end
 
-      # 最後のひらがなに対する 'short' ケースの翻訳を取得して追加
       last_char = word[-1]
-      # characterがlast_charに一致するHiraganaレコードを取得
       last_hiragana_records = Hiragana.where(character: last_char)
-      
-      # その中からidを使ってHiraganaLaoのレコードを取得し、case_typeが'short'のものを絞り込む
       final_hiragana_translation = HiraganaLao.where(hiragana_id: last_hiragana_records.pluck(:id), case_type: 'short').first
-      
 
-      # 最後の翻訳が存在する場合に追加
-      lao_word += final_hiragana_translation&.lao if final_hiragana_translation
-
+      lao_word += final_hiragana_translation&.lao unless skip_last_char
       lao_output << lao_word unless lao_word.empty?
     end
 
