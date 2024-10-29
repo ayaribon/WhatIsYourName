@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_28_064213) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_28_150451) do
   create_table "hiragana_laos", charset: "utf8mb3", force: :cascade do |t|
     t.string "hiragana"
     t.string "lao"
@@ -18,6 +18,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_28_064213) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "hiragana_id", null: false
+    t.string "kana_type"
     t.index ["hiragana_id"], name: "index_hiragana_laos_on_hiragana_id"
   end
 
