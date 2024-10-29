@@ -24,4 +24,7 @@ Rails.application.routes.draw do
 
   # ひらがな変換関連のルート
   resources :hiragana_conversions, only: [ :hiragana_input, :new, :create, :show ]
+
+  get 'new', to: 'hiragana_conversions#new' # 新規作成ページ
+  post 'hiragana_conversions/convert', to: 'hiragana_conversions#convert'
 end

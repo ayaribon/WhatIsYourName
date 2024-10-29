@@ -10,15 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_28_150451) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_29_172402) do
   create_table "hiragana_laos", charset: "utf8mb3", force: :cascade do |t|
-    t.string "hiragana"
     t.string "lao"
     t.string "case_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "hiragana_id", null: false
-    t.string "kana_type"
+    t.string "romaji"
     t.index ["hiragana_id"], name: "index_hiragana_laos_on_hiragana_id"
   end
 
@@ -27,7 +26,14 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_28_150451) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "romaji"
-    t.string "kana_type"
+  end
+
+  create_table "keyboards", charset: "utf8mb3", force: :cascade do |t|
+    t.bigint "hiragana_id", null: false
+    t.string "layout"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hiragana_id"], name: "index_keyboards_on_hiragana_id"
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -41,4 +47,5 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_28_150451) do
   end
 
   add_foreign_key "hiragana_laos", "hiraganas"
+  add_foreign_key "keyboards", "hiraganas"
 end

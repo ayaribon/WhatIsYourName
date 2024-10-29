@@ -1,60 +1,57 @@
 class HiraganaLao < ApplicationRecord
   belongs_to :hiragana
-
-  validates :kana_type, presence: true
-  validates :case_type, presence: true
-
-  # ひらがなからラオス語への変換メソッド
   def self.convert_hiragana_to_lao(input)
+    # スペースで単語を分割
     words = input.split(" ")
-    lao_output = []
+    output = []
 
     words.each do |word|
-      lao_word = ""
-      word_length = word.length
-      skip_next_char = false  # 次の文字を省略するフラグ
+      previous_romaji = nil
 
-      word.chars.each_with_index do |char, index|
-        next if skip_next_char && (skip_next_char = false)  # フラグが立っている場合スキップ
-
+      word.each_char.with_index do |char, index|
+        # ひらがなを取得
         hiragana_record = Hiragana.find_by(character: char)
-        if hiragana_record.nil?
-          lao_word += char
-          next
-        end
+        next unless hiragana_record
 
-        case_type = "normal"
-        romaji = hiragana_record.romaji 
+        # romajiに変換
+        romaji = hiragana_record.romaji
 
-        if index == word_length - 1
-          case_type = "short"
-        end
+        # 同じromajiが連続する場合、後の文字をスキップ
+        next if previous_romaji == romaji
 
-        if index > 0 && romaji == word.chars[index - 1] && word.chars[index] =~ /[あいえうお]/
-          skip_next_char = true
-          next
-        end        
+        case_type = determine_case_type(word, index, char, romaji)
 
-        if index > 0
-          previous_hiragana_record = Hiragana.find_by(character: word.chars[index - 1])
-          if previous_hiragana_record&.romaji == 'o' && hiragana_record.romaji == 'u'
-            skip_next_char = true
-            next
-          end
-        end
+        # ラオス文字を取得
+        lao_character = get_lao_character(hiragana_record, case_type)
 
-        if index < word_length - 1 && word.chars[index + 1] == 'ん'
-          case_type = "special_case"
-        end
-
-        lao_translation = HiraganaLao.find_by(hiragana_id: hiragana_record.id, case_type: case_type)
-
-        lao_word += lao_translation if lao_translation
+        output << lao_character if lao_character
+        previous_romaji = romaji
       end
-
-      lao_output << lao_word unless lao_word.empty?
     end
 
-    lao_output.join(" ")
+    output.join
+  end
+
+  def self.determine_case_type(word, index, char, romaji)
+    if index == word.length - 1
+      # 単語の最後のひらがな
+      return 'short'
+    elsif char == 'ん' || (index < word.length - 1 && word[index + 1] == 'ん')
+      # 次の文字が「ん」
+      return 'special_case'
+    elsif index < word.length - 1 && word[index + 1] == 'っ'
+      # 次の文字が「っ」
+      return 'short'
+    elsif romaji == 'u' && index > 0 && romaji[-1] == 'o'
+      # 「う」の前が「oで終わるromajiのひらがな」
+      return nil # スキップ
+    else
+      return 'normal'
+    end
+  end
+
+  def self.get_lao_character(hiragana_record, case_type)
+    # 対応するラオス文字を取得
+    HiraganaLao.where(hiragana_id: hiragana_record.id, case_type: case_type).first&.character
   end
 end
