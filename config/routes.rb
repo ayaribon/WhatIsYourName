@@ -22,9 +22,10 @@ Rails.application.routes.draw do
   # 新規登録関連のルート
   resources :users, only: [ :new, :create ]
 
-  # ひらがな変換関連のルート
-  resources :hiragana_conversions, only: [ :hiragana_input, :new, :create, :show ]
+    # newアクションを使って変換ページを表示
+  get 'new', to: 'converts#new'
 
-  get 'new', to: 'hiragana_conversions#new' # 新規作成ページ
-  post 'hiragana_conversions/convert', to: 'hiragana_conversions#convert'
+  # ひらがなをラオス文字に変換するPOSTリクエスト
+  post 'convert', to: 'converts#convert'
+
 end
