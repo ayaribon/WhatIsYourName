@@ -149,6 +149,7 @@
       button.addEventListener('click', function() {
         const hiragana = this.getAttribute('data-hiragana');
         inputField.value += hiragana;
+        console.log("Current input:", inputField.value);  // デバッグ用
       });
     });
   });
@@ -168,7 +169,7 @@
     })
     .then(response => response.json())
     .then(data => {
-      // レスポンスのラオス語テキストを出力フィールドに表示
+      console.log("Response data:", data);  // サーバーからのレスポンス確認用
       document.getElementById('output').value = data.lao_text;
     })
     .catch(error => {

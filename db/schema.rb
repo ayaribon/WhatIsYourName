@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_29_172402) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_30_035348) do
   create_table "hiragana_laos", charset: "utf8mb3", force: :cascade do |t|
     t.string "lao"
     t.string "case_type"
@@ -18,6 +18,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_29_172402) do
     t.datetime "updated_at", null: false
     t.bigint "hiragana_id", null: false
     t.string "romaji"
+    t.index ["case_type"], name: "index_hiragana_laos_on_case_type"
     t.index ["hiragana_id"], name: "index_hiragana_laos_on_hiragana_id"
   end
 
@@ -36,6 +37,15 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_29_172402) do
     t.index ["hiragana_id"], name: "index_keyboards_on_hiragana_id"
   end
 
+  create_table "romaji_references", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "romaji", null: false
+    t.bigint "hiragana_id", null: false
+    t.bigint "hiragana_lao_id", null: false
+    t.index ["hiragana_id"], name: "index_romaji_references_on_hiragana_id"
+    t.index ["hiragana_lao_id"], name: "index_romaji_references_on_hiragana_lao_id"
+    t.index ["romaji"], name: "index_romaji_references_on_romaji"
+  end
+
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", null: false
     t.string "crypted_password"
@@ -48,4 +58,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_29_172402) do
 
   add_foreign_key "hiragana_laos", "hiraganas"
   add_foreign_key "keyboards", "hiraganas"
+  add_foreign_key "romaji_references", "hiragana_laos"
+  add_foreign_key "romaji_references", "hiraganas"
 end

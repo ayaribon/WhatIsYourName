@@ -8,6 +8,7 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+=begin
 hiragana_records = [ 
   { character: 'あ', romaji: 'a' },
   { character: 'い', romaji: 'i' },
@@ -147,378 +148,512 @@ hiragana_records = [
   { character: 'ぴょ', romaji: 'pyo' }
 ]
 
-hiragana_lao_records = [
-  { romaji: 'a', lao: 'ອາ', case_type: 'normal' },
-  { romaji: 'a', lao: 'ອະ', case_type: 'short' },
-  { romaji: 'a', lao: 'ອັ', case_type: 'special_case' },
-  { romaji: 'i', lao: 'ອີ', case_type: 'normal' },
-  { romaji: 'i', lao: 'ອິ', case_type: 'short' },
-  { romaji: 'i', lao: 'ອິ', case_type: 'special_case' },
-  { romaji: 'u', lao: 'ອູ', case_type: 'normal' },
-  { romaji: 'u', lao: 'ອຸ', case_type: 'short' },
-  { romaji: 'u', lao: 'ອຸ', case_type: 'special_case' },
-  { romaji: 'e', lao: 'ເອ', case_type: 'normal' },
-  { romaji: 'e', lao: 'ເອະ', case_type: 'short' },
-  { romaji: 'e', lao: 'ເອັ', case_type: 'special_case' },
-  { romaji: 'o', lao: 'ໂອ', case_type: 'normal' },
-  { romaji: 'o', lao: 'ໂອະ', case_type: 'short' },
-  { romaji: 'o', lao: 'ອົ', case_type: 'special_case' },
-
-  # か行
-  { romaji: 'ka', lao: 'ຄາ', case_type: 'normal' },
-  { romaji: 'ka', lao: 'ຄະ', case_type: 'short' },
-  { romaji: 'ka', lao: 'ຄັ', case_type: 'special_case' },
-  { romaji: 'ki', lao: 'ຄີ', case_type: 'normal' },
-  { romaji: 'ki', lao: 'ຄິ', case_type: 'short' },
-  { romaji: 'ki', lao: 'ຄິ', case_type: 'special_case' },
-  { romaji: 'ku', lao: 'ຄູ', case_type: 'normal' },
-  { romaji: 'ku', lao: 'ຄຸ', case_type: 'short' },
-  { romaji: 'ku', lao: 'ຄຸ', case_type: 'special_case' },
-  { romaji: 'ke', lao: 'ເຄ', case_type: 'normal' },
-  { romaji: 'ke', lao: 'ເຄະ', case_type: 'short' },
-  { romaji: 'ke', lao: 'ເຄັ', case_type: 'special_case' },
-  { romaji: 'ko', lao: 'ໂຄ', case_type: 'normal' },
-  { romaji: 'ko', lao: 'ໂຄະ', case_type: 'short' },
-  { romaji: 'ko', lao: 'ຄົ', case_type: 'special_case' },
-
-  # さ行
-  { romaji: 'sa', lao: 'ຊາ', case_type: 'normal' },
-  { romaji: 'sa', lao: 'ຊະ', case_type: 'short' },
-  { romaji: 'sa', lao: 'ຊັ', case_type: 'special_case' },
-  { romaji: 'si', lao: 'ຊີ', case_type: 'normal' },
-  { romaji: 'si', lao: 'ຊິ', case_type: 'short' },
-  { romaji: 'si', lao: 'ຊິ', case_type: 'special_case' },
-  { romaji: 'su', lao: 'ຊູ', case_type: 'normal' },
-  { romaji: 'su', lao: 'ຊຸ', case_type: 'short' },
-  { romaji: 'su', lao: 'ຊຸ', case_type: 'special_case' },
-  { romaji: 'se', lao: 'ເຊ', case_type: 'normal' },
-  { romaji: 'se', lao: 'ເຊະ', case_type: 'short' },
-  { romaji: 'se', lao: 'ເຊັ', case_type: 'special_case' },
-  { romaji: 'so', lao: 'ໂຊ', case_type: 'normal' },
-  { romaji: 'so', lao: 'ໂຊະ', case_type: 'short' },
-  { romaji: 'so', lao: 'ຊົ', case_type: 'special_case' },
-
-  # た行
-  { romaji: 'ta', lao: 'ຕາ', case_type: 'normal' },
-  { romaji: 'ta', lao: 'ຕະ', case_type: 'short' },
-  { romaji: 'ta', lao: 'ຕັ', case_type: 'special_case' },
-  { romaji: 'ti', lao: 'ຈີ', case_type: 'normal' },
-  { romaji: 'ti', lao: 'ຈິ', case_type: 'short' },
-  { romaji: 'ti', lao: 'ຈີ', case_type: 'special_case' },
-  { romaji: 'tu', lao: 'ສູ', case_type: 'normal' },
-  { romaji: 'tu', lao: 'ສຸ', case_type: 'short' },
-  { romaji: 'tu', lao: 'ສຸ', case_type: 'special_case' },
-  { romaji: 'te', lao: 'ເຕ', case_type: 'normal' },
-  { romaji: 'te', lao: 'ເຕະ', case_type: 'short' },
-  { romaji: 'te', lao: 'ເຕັ', case_type: 'special_case' },
-  { romaji: 'to', lao: 'ໂຕ', case_type: 'normal' },
-  { romaji: 'to', lao: 'ໂຕະ', case_type: 'short' },
-  { romaji: 'to', lao: 'ຕົ', case_type: 'special_case' },
-
-  # な行
-  { romaji: 'na', lao: 'ນາ', case_type: 'normal' },
-  { romaji: 'na', lao: 'ນະ', case_type: 'short' },
-  { romaji: 'na', lao: 'ນັ', case_type: 'special_case' },
-  { romaji: 'ni', lao: 'ນີ', case_type: 'normal' },
-  { romaji: 'ni', lao: 'ນິ', case_type: 'short' },
-  { romaji: 'ni', lao: 'ນິ', case_type: 'special_case' },
-  { romaji: 'nu', lao: 'ນູ', case_type: 'normal' },
-  { romaji: 'nu', lao: 'ນຸ', case_type: 'short' },
-  { romaji: 'nu', lao: 'ນຸ', case_type: 'special_case' },
-  { romaji: 'ne', lao: 'ເນ', case_type: 'normal' },
-  { romaji: 'ne', lao: 'ເນະ', case_type: 'short' },
-  { romaji: 'ne', lao: 'ເນັ', case_type: 'special_case' },
-  { romaji: 'no', lao: 'ໂນ', case_type: 'normal' },
-  { romaji: 'no', lao: 'ໂນະ', case_type: 'short' },
-  { romaji: 'no', lao: 'ນົ', case_type: 'special_case' },
-
-  # は行
-  { romaji: 'ha', lao: 'ຮາ', case_type: 'normal' },
-  { romaji: 'ha', lao: 'ຮະ', case_type: 'short' },
-  { romaji: 'ha', lao: 'ຮັ', case_type: 'special_case' },
-  { romaji: 'hi', lao: 'ຮີ', case_type: 'normal' },
-  { romaji: 'hi', lao: 'ຮິ', case_type: 'short' },
-  { romaji: 'hi', lao: 'ຮິ', case_type: 'special_case' },
-  { romaji: 'hu', lao: 'ຟູ', case_type: 'normal' },
-  { romaji: 'hu', lao: 'ຟຸ', case_type: 'short' },
-  { romaji: 'hu', lao: 'ຟຸ', case_type: 'special_case' },
-  { romaji: 'he', lao: 'ເຮ', case_type: 'normal' },
-  { romaji: 'he', lao: 'ເຮະ', case_type: 'short' },
-  { romaji: 'he', lao: 'ເຮັ', case_type: 'special_case' },
-  { romaji: 'ho', lao: 'ໂຮ', case_type: 'normal' },
-  { romaji: 'ho', lao: 'ໂຮະ', case_type: 'short' },
-  { romaji: 'ho', lao: 'ຮົ', case_type: 'special_case' },
-
-  # ま行
-  { romaji: 'ma', lao: 'ມາ', case_type: 'normal' },
-  { romaji: 'ma', lao: 'ມະ', case_type: 'short' },
-  { romaji: 'ma', lao: 'ມັ', case_type: 'special_case' },
-  { romaji: 'mi', lao: 'ມີ', case_type: 'normal' },
-  { romaji: 'mi', lao: 'ມິ', case_type: 'short' },
-  { romaji: 'mi', lao: 'ມິ', case_type: 'special_case' },
-  { romaji: 'mu', lao: 'ມູ', case_type: 'normal' },
-  { romaji: 'mu', lao: 'ມຸ', case_type: 'short' },
-  { romaji: 'mu', lao: 'ມຸ', case_type: 'special_case' },
-  { romaji: 'me', lao: 'ເມ', case_type: 'normal' },
-  { romaji: 'me', lao: 'ເມະ', case_type: 'short' },
-  { romaji: 'me', lao: 'ເມັ', case_type: 'special_case' },
-  { romaji: 'mo', lao: 'ໂມ', case_type: 'normal' },
-  { romaji: 'mo', lao: 'ໂມະ', case_type: 'short' },
-  { romaji: 'mo', lao: 'ມົ', case_type: 'special_case' },
-
-  # や行
-  { romaji: 'ya', lao: 'ຢາ', case_type: 'normal' },
-  { romaji: 'ya', lao: 'ຢະ', case_type: 'short' },
-  { romaji: 'ya', lao: 'ຢັ', case_type: 'special_case' },
-  { romaji: 'yu', lao: 'ຢູ', case_type: 'normal' },
-  { romaji: 'yu', lao: 'ຢຸ', case_type: 'short' },
-  { romaji: 'yu', lao: 'ຢຸ', case_type: 'special_case' },
-  { romaji: 'yo', lao: 'ໂຢ', case_type: 'normal' },
-  { romaji: 'yo', lao: 'ໂຢະ', case_type: 'short' },
-  { romaji: 'yo', lao: 'ຢົ', case_type: 'special_case' },
-
-  # ら行
-  { romaji: 'ra', lao: 'ລາ', case_type: 'normal' },
-  { romaji: 'ra', lao: 'ລະ', case_type: 'short' },
-  { romaji: 'ra', lao: 'ລັ', case_type: 'special_case' },
-  { romaji: 'ri', lao: 'ລີ', case_type: 'normal' },
-  { romaji: 'ri', lao: 'ລິ', case_type: 'short' },
-  { romaji: 'ri', lao: 'ລິ', case_type: 'special_case' },
-  { romaji: 'ru', lao: 'ລູ', case_type: 'normal' },
-  { romaji: 'ru', lao: 'ລຸ', case_type: 'short' },
-  { romaji: 'ru', lao: 'ລຸ', case_type: 'special_case' },
-  { romaji: 're', lao: 'ເລ', case_type: 'normal' },
-  { romaji: 're', lao: 'ເລະ', case_type: 'short' },
-  { romaji: 're', lao: 'ເລັ', case_type: 'special_case' },
-  { romaji: 'ro', lao: 'ໂລ', case_type: 'normal' },
-  { romaji: 'ro', lao: 'ໂລະ', case_type: 'short' },
-  { romaji: 'ro', lao: 'ລົ', case_type: 'special_case' },
-
-  # わ行
-  { romaji: 'wa', lao: 'ວາ', case_type: 'normal' },
-  { romaji: 'wa', lao: 'ວະ', case_type: 'short' },
-  { romaji: 'wa', lao: 'ວັ', case_type: 'special_case' },
-  { romaji: 'wo', lao: 'ໂວ', case_type: 'normal' },
-  { romaji: 'wo', lao: 'ໂວະ', case_type: 'short' },
-  { romaji: 'wo', lao: 'ວົ', case_type: 'special_case' },
-
-  # ん行
-  { romaji: 'n', lao: 'ນ', case_type: 'normal' },
-  { romaji: 'n', lao: 'ນ', case_type: 'short' },
-  { romaji: 'n', lao: 'ນ', case_type: 'special_case' },
-
-  # が行
-  { romaji: 'ga', lao: 'ກາ', case_type: 'normal' },
-  { romaji: 'ga', lao: 'ກະ', case_type: 'short' },
-  { romaji: 'ga', lao: 'ກັ', case_type: 'special_case' },
-  { romaji: 'gi', lao: 'ກິ', case_type: 'normal' },
-  { romaji: 'gi', lao: 'ກິ', case_type: 'short' },
-  { romaji: 'gi', lao: 'ກິ', case_type: 'special_case' },
-  { romaji: 'gu', lao: 'ກູ', case_type: 'normal' },
-  { romaji: 'gu', lao: 'ກຸ', case_type: 'short' },
-  { romaji: 'gu', lao: 'ກຸ', case_type: 'special_case' },
-  { romaji: 'ge', lao: 'ເກ', case_type: 'normal' },
-  { romaji: 'ge', lao: 'ເກະ', case_type: 'short' },
-  { romaji: 'ge', lao: 'ເກັ', case_type: 'special_case' },
-  { romaji: 'go', lao: 'ໂກ', case_type: 'normal' },
-  { romaji: 'go', lao: 'ໂກະ', case_type: 'short' },
-  { romaji: 'go', lao: 'ກົ', case_type: 'special_case' },
-
-  # ざ行
-  { romaji: 'za', lao: 'ຊາ', case_type: 'normal' },
-  { romaji: 'za', lao: 'ຊະ', case_type: 'short' },
-  { romaji: 'za', lao: 'ຊັ', case_type: 'special_case' },
-  { romaji: 'zi', lao: 'ຈີ', case_type: 'normal' },
-  { romaji: 'zi', lao: 'ຈິ', case_type: 'short' },
-  { romaji: 'zi', lao: 'ຈິ', case_type: 'special_case' },
-  { romaji: 'zu', lao: 'ຊູ', case_type: 'normal' },
-  { romaji: 'zu', lao: 'ຊຸ', case_type: 'short' },
-  { romaji: 'zu', lao: 'ຊຸ', case_type: 'special_case' },
-  { romaji: 'ze', lao: 'ເຊ', case_type: 'normal' },
-  { romaji: 'ze', lao: 'ເຊະ', case_type: 'short' },
-  { romaji: 'ze', lao: 'ເຊັ', case_type: 'special_case' },
-  { romaji: 'zo', lao: 'ໂຊ', case_type: 'normal' },
-  { romaji: 'zo', lao: 'ໂຊະ', case_type: 'short' },
-  { romaji: 'zo', lao: 'ຊົ', case_type: 'special_case' },
-
-  # だ行
-  { romaji: 'da', lao: 'ດາ', case_type: 'normal' },
-  { romaji: 'da', lao: 'ດະ', case_type: 'short' },
-  { romaji: 'da', lao: 'ດັ', case_type: 'special_case' },
-  { romaji: 'di', lao: 'ຈີ', case_type: 'normal' },
-  { romaji: 'di', lao: 'ຈິ', case_type: 'short' },
-  { romaji: 'di', lao: 'ຈິ', case_type: 'special_case' },
-  { romaji: 'du', lao: 'ຊູ', case_type: 'normal' },
-  { romaji: 'du', lao: 'ຊຸ', case_type: 'short' },
-  { romaji: 'du', lao: 'ຊຸ', case_type: 'special_case' },
-  { romaji: 'de', lao: 'ເດ', case_type: 'normal' },
-  { romaji: 'de', lao: 'ເດະ', case_type: 'short' },
-  { romaji: 'de', lao: 'ເດັ', case_type: 'special_case' },
-  { romaji: 'do', lao: 'ໂດ', case_type: 'normal' },
-  { romaji: 'do', lao: 'ໂດະ', case_type: 'short' },
-  { romaji: 'do', lao: 'ດົ', case_type: 'special_case' },
-
-  # ば行
-  { romaji: 'ba', lao: 'ບາ', case_type: 'normal' },
-  { romaji: 'ba', lao: 'ບະ', case_type: 'short' },
-  { romaji: 'ba', lao: 'ບັ', case_type: 'special_case' },
-  { romaji: 'bi', lao: 'ບີ', case_type: 'normal' },
-  { romaji: 'bi', lao: 'ບິ', case_type: 'short' },
-  { romaji: 'bi', lao: 'ບິ', case_type: 'special_case' },
-  { romaji: 'bu', lao: 'ບູ', case_type: 'normal' },
-  { romaji: 'bu', lao: 'ບຸ', case_type: 'short' },
-  { romaji: 'bu', lao: 'ບຸ', case_type: 'special_case' },
-  { romaji: 'be', lao: 'ເບ', case_type: 'normal' },
-  { romaji: 'be', lao: 'ເບະ', case_type: 'short' },
-  { romaji: 'be', lao: 'ເບັ', case_type: 'special_case' },
-  { romaji: 'bo', lao: 'ໂບ', case_type: 'normal' },
-  { romaji: 'bo', lao: 'ໂບະ', case_type: 'short' },
-  { romaji: 'bo', lao: 'ບົ', case_type: 'special_case' },
-
-  # ぱ行
-  { romaji: 'pa', lao: 'ປາ', case_type: 'normal' },
-  { romaji: 'pa', lao: 'ປະ', case_type: 'short' },
-  { romaji: 'pa', lao: 'ປັ', case_type: 'special_case' },
-  { romaji: 'pi', lao: 'ປີ', case_type: 'normal' },
-  { romaji: 'pi', lao: 'ປິ', case_type: 'short' },
-  { romaji: 'pi', lao: 'ປິ', case_type: 'special_case' },
-  { romaji: 'pu', lao: 'ປູ', case_type: 'normal' },
-  { romaji: 'pu', lao: 'ປຸ', case_type: 'short' },
-  { romaji: 'pu', lao: 'ປຸ', case_type: 'special_case' },
-  { romaji: 'pe', lao: 'ເປ', case_type: 'normal' },
-  { romaji: 'pe', lao: 'ເປະ', case_type: 'short' },
-  { romaji: 'pe', lao: 'ເປັ', case_type: 'special_case' },
-  { romaji: 'po', lao: 'ໂປ', case_type: 'normal' },
-  { romaji: 'po', lao: 'ໂປະ', case_type: 'short' },
-  { romaji: 'po', lao: 'ປົ', case_type: 'special_case' },
-
-# きゃ行 
-  { romaji: 'kya', lao: 'ເຄຍ', case_type: 'normal' },
-  { romaji: 'kya', lao: 'ເຄັຍ', case_type: 'short' },
-  { romaji: 'kya', lao: 'ເຄັຍ', case_type: 'special_case' },
-  { romaji: 'kyu', lao: 'ຄີວ', case_type: 'normal' },
-  { romaji: 'kyu', lao: 'ຄິວ', case_type: 'short' },
-  { romaji: 'kyu', lao: 'ຄິວ', case_type: 'special_case' },
-  { romaji: 'kyo', lao: 'ຄຽວ', case_type: 'normal' },
-  { romaji: 'kyo', lao: 'ຄຽວ', case_type: 'short' },
-  { romaji: 'kyo', lao: 'ຄຽວ', case_type: 'special_case' },
-
-# しゃ行
-  { romaji: 'sha', lao: 'ເຊຍ', case_type: 'normal' },
-  { romaji: 'sha', lao: 'ເຊັຍ', case_type: 'short' },
-  { romaji: 'sha', lao: 'ຊຽ', case_type: 'special_case' },
-  { romaji: 'shu', lao: 'ຊີວ', case_type: 'normal' },
-  { romaji: 'shu', lao: 'ຊິວ', case_type: 'short' },
-  { romaji: 'shu', lao: 'ຊິວ', case_type: 'special_case' },
-  { romaji: 'sho', lao: 'ຊຽວ', case_type: 'normal' },
-  { romaji: 'sho', lao: 'ຊຽວ', case_type: 'short' },
-  { romaji: 'sho', lao: 'ຊຽວ', case_type: 'special_case' },
-
-# ちゃ行
-  { romaji: 'cha', lao: 'ຈາ', case_type: 'normal' },
-  { romaji: 'cha', lao: 'ຈະ', case_type: 'short' },
-  { romaji: 'cha', lao: 'ຈັ', case_type: 'special_case' },
-  { romaji: 'chu', lao: 'ຈູ', case_type: 'normal' },
-  { romaji: 'chu', lao: 'ຈຸ', case_type: 'short' },
-  { romaji: 'chu', lao: 'ຈຸ', case_type: 'special_case' },
-  { romaji: 'cho', lao: 'ໂຈ', case_type: 'normal' },
-  { romaji: 'cho', lao: 'ໂຈະ', case_type: 'short' },
-  { romaji: 'cho', lao: 'ຈົ', case_type: 'special_case' },
-
-# にゃ行
-  { romaji: 'nya', lao: 'ຍາ', case_type: 'normal' },
-  { romaji: 'nya', lao: 'ຍະ', case_type: 'short' },
-  { romaji: 'nya', lao: 'ຍັ', case_type: 'special_case' },
-  { romaji: 'nyu', lao: 'ຍູ', case_type: 'normal' },
-  { romaji: 'nyu', lao: 'ຍຸ', case_type: 'short' },
-  { romaji: 'nyu', lao: 'ຍຸ', case_type: 'special_case' },
-  { romaji: 'nyo', lao: 'ໂຍ', case_type: 'normal' },
-  { romaji: 'nyo', lao: 'ໂຍະ', case_type: 'short' },
-  { romaji: 'nyo', lao: 'ຍົ', case_type: 'special_case' },
-
-# ひゃ行
-  { romaji: 'hya', lao: 'ເຮຍ', case_type: 'normal' },
-  { romaji: 'hya', lao: 'ເຮັຍ', case_type: 'short' },
-  { romaji: 'hya', lao: 'ຮຽ', case_type: 'special_case' },
-  { romaji: 'hyu', lao: 'ຮີວ', case_type: 'normal' },
-  { romaji: 'hyu', lao: 'ຮິວ', case_type: 'short' },
-  { romaji: 'hyu', lao: 'ຮິວ', case_type: 'special_case' },
-  { romaji: 'hyo', lao: 'ຮຽວ', case_type: 'normal' },
-  { romaji: 'hyo', lao: 'ຮຽວ', case_type: 'short' },
-  { romaji: 'hyo', lao: 'ຮຽວ', case_type: 'special_case' },
-
-# みゃ行
-  { romaji: 'mya', lao: 'ເມຍ', case_type: 'normal' },
-  { romaji: 'mya', lao: 'ເມັຍ', case_type: 'short' },
-  { romaji: 'mya', lao: 'ມຽ', case_type: 'special_case' },
-  { romaji: 'myu', lao: 'ມີວ', case_type: 'normal' },
-  { romaji: 'myu', lao: 'ມິວ', case_type: 'short' },
-  { romaji: 'myu', lao: 'ມິວ', case_type: 'special_case' },
-  { romaji: 'myo', lao: 'ມຽວ', case_type: 'normal' },
-  { romaji: 'myo', lao: 'ມຽວ', case_type: 'short' },
-  { romaji: 'myo', lao: 'ມຽວ', case_type: 'special_case' },
-
-# りゃ行
-  { romaji: 'rya', lao: 'ເຣຍ', case_type: 'normal' },
-  { romaji: 'rya', lao: 'ເຣັຍ', case_type: 'short' },
-  { romaji: 'rya', lao: 'ຣຽ', case_type: 'special_case' },
-  { romaji: 'ryu', lao: 'ຣີວ', case_type: 'normal' },
-  { romaji: 'ryu', lao: 'ຣິວ', case_type: 'short' },
-  { romaji: 'ryu', lao: 'ຣິວ', case_type: 'special_case' },
-  { romaji: 'ryo', lao: 'ຣຽວ', case_type: 'normal' },
-  { romaji: 'ryo', lao: 'ຣຽວ', case_type: 'short' },
-  { romaji: 'ryo', lao: 'ຣຽວ', case_type: 'special_case' },
-
-# ぎゃ行 
-  { romaji: 'gya', lao: 'ເກຍ', case_type: 'normal' },
-  { romaji: 'gya', lao: 'ເກັຍ', case_type: 'short' },
-  { romaji: 'gya', lao: 'ກຽ', case_type: 'special_case' },
-  { romaji: 'gyu', lao: 'ກີວ', case_type: 'normal' },
-  { romaji: 'gyu', lao: 'ກິວ', case_type: 'short' },
-  { romaji: 'gyu', lao: 'ກິວ', case_type: 'special_case' },
-  { romaji: 'gyo', lao: 'ກຽວ', case_type: 'normal' },
-  { romaji: 'gyo', lao: 'ກຽວ', case_type: 'short' },
-  { romaji: 'gyo', lao: 'ກຽວ', case_type: 'special_case' },
-
-# じゃ行
-  { romaji: 'ja', lao: 'ຈາ', case_type: 'normal' },
-  { romaji: 'ja', lao: 'ຈະ', case_type: 'short' },
-  { romaji: 'ja', lao: 'ຈັ', case_type: 'special_case' },
-  { romaji: 'ju', lao: 'ຈູ', case_type: 'normal' },
-  { romaji: 'ju', lao: 'ຈຸ', case_type: 'short' },
-  { romaji: 'ju', lao: 'ຈຸ', case_type: 'special_case' },
-  { romaji: 'jo', lao: 'ໂຈ', case_type: 'normal' },
-  { romaji: 'jo', lao: 'ໂຈະ', case_type: 'short' },
-  { romaji: 'jo', lao: 'ຈົ', case_type: 'special_case' },
-
-# びゃ行
-  { romaji: 'bya', lao: 'ເບຍ', case_type: 'normal' },
-  { romaji: 'bya', lao: 'ເບັຍ', case_type: 'short' },
-  { romaji: 'bya', lao: 'ບຽ', case_type: 'special_case' },
-  { romaji: 'byu', lao: 'ບິວ', case_type: 'normal' },
-  { romaji: 'byu', lao: 'ບິວ', case_type: 'short' },
-  { romaji: 'byu', lao: 'ບິວ', case_type: 'special_case' },
-  { romaji: 'byo', lao: 'ບຽວ', case_type: 'normal' },
-  { romaji: 'byo', lao: 'ບຽວ', case_type: 'short' },
-  { romaji: 'byo', lao: 'ບຽວ', case_type: 'special_case' },
-
-# ぴゃ行
-  { romaji: 'pya', lao: 'ເປຍ', case_type: 'normal' },
-  { romaji: 'pya', lao: 'ເປັຍ', case_type: 'short' },
-  { romaji: 'pya', lao: 'ປຽ', case_type: 'special_case' },
-  { romaji: 'pyu', lao: 'ປີວ', case_type: 'normal' },
-  { romaji: 'pyu', lao: 'ປິວ', case_type: 'short' },
-  { romaji: 'pyu', lao: 'ປິວ', case_type: 'special_case' },
-  { romaji: 'pyo', lao: 'ປຽວ', case_type: 'normal' },
-  { romaji: 'pyo', lao: 'ປຽວ', case_type: 'short' },
-  { romaji: 'pyo', lao: 'ປຽວ', case_type: 'special_case' }
-]
-
-# データベースに保存する
 hiragana_records.each do |record|
   Hiragana.create(record)
 end
 
+# hiragana_id を取得
+hiragana_id_map = Hiragana.all.index_by(&:romaji)
+
+romaji_references = [
+  { romaji: 'a', hiragana_id: Hiragana.find_by(character: 'あ').id },
+  { romaji: 'i', hiragana_id: Hiragana.find_by(character: 'い').id },
+  { romaji: 'u', hiragana_id: Hiragana.find_by(character: 'う').id },
+  { romaji: 'e', hiragana_id: Hiragana.find_by(character: 'え').id },
+  { romaji: 'o', hiragana_id: Hiragana.find_by(character: 'お').id },
+  # か行
+  { romaji: 'ka', hiragana_id: Hiragana.find_by(character: 'か').id },
+  { romaji: 'ki', hiragana_id: Hiragana.find_by(character: 'き').id },
+  { romaji: 'ku', hiragana_id: Hiragana.find_by(character: 'く').id },
+  { romaji: 'ke', hiragana_id: Hiragana.find_by(character: 'け').id },
+  { romaji: 'ko', hiragana_id: Hiragana.find_by(character: 'こ').id },
+  # さ行
+  { romaji: 'sa', hiragana_id: Hiragana.find_by(character: 'さ').id },
+  { romaji: 'shi', hiragana_id: Hiragana.find_by(character: 'し').id },
+  { romaji: 'su', hiragana_id: Hiragana.find_by(character: 'す').id },
+  { romaji: 'se', hiragana_id: Hiragana.find_by(character: 'せ').id },
+  { romaji: 'so', hiragana_id: Hiragana.find_by(character: 'そ').id },
+  # た行
+  { romaji: 'ta', hiragana_id: Hiragana.find_by(character: 'た').id },
+  { romaji: 'chi', hiragana_id: Hiragana.find_by(character: 'ち').id },
+  { romaji: 'tsu', hiragana_id: Hiragana.find_by(character: 'つ').id },
+  { romaji: 'te', hiragana_id: Hiragana.find_by(character: 'て').id },
+  { romaji: 'to', hiragana_id: Hiragana.find_by(character: 'と').id },
+  # な行
+  { romaji: 'na', hiragana_id: Hiragana.find_by(character: 'な').id },
+  { romaji: 'ni', hiragana_id: Hiragana.find_by(character: 'に').id },
+  { romaji: 'nu', hiragana_id: Hiragana.find_by(character: 'ぬ').id },
+  { romaji: 'ne', hiragana_id: Hiragana.find_by(character: 'ね').id },
+  { romaji: 'no', hiragana_id: Hiragana.find_by(character: 'の').id },
+  # は行
+  { romaji: 'ha', hiragana_id: Hiragana.find_by(character: 'は').id },
+  { romaji: 'hi', hiragana_id: Hiragana.find_by(character: 'ひ').id },
+  { romaji: 'fu', hiragana_id: Hiragana.find_by(character: 'ふ').id },
+  { romaji: 'he', hiragana_id: Hiragana.find_by(character: 'へ').id },
+  { romaji: 'ho', hiragana_id: Hiragana.find_by(character: 'ほ').id },
+  # ま行
+  { romaji: 'ma', hiragana_id: Hiragana.find_by(character: 'ま').id },
+  { romaji: 'mi', hiragana_id: Hiragana.find_by(character: 'み').id },
+  { romaji: 'mu', hiragana_id: Hiragana.find_by(character: 'む').id },
+  { romaji: 'me', hiragana_id: Hiragana.find_by(character: 'め').id },
+  { romaji: 'mo', hiragana_id: Hiragana.find_by(character: 'も').id },
+  # や行
+  { romaji: 'ya', hiragana_id: Hiragana.find_by(character: 'や').id },
+  { romaji: 'yu', hiragana_id: Hiragana.find_by(character: 'ゆ').id },
+  { romaji: 'yo', hiragana_id: Hiragana.find_by(character: 'よ').id },
+  # ら行
+  { romaji: 'ra', hiragana_id: Hiragana.find_by(character: 'ら').id },
+  { romaji: 'ri', hiragana_id: Hiragana.find_by(character: 'り').id },
+  { romaji: 'ru', hiragana_id: Hiragana.find_by(character: 'る').id },
+  { romaji: 're', hiragana_id: Hiragana.find_by(character: 'れ').id },
+  { romaji: 'ro', hiragana_id: Hiragana.find_by(character: 'ろ').id },
+  # わ行
+  { romaji: 'wa', hiragana_id: Hiragana.find_by(character: 'わ').id },
+  { romaji: 'wo', hiragana_id: Hiragana.find_by(character: 'を').id },
+  # ん行
+  { romaji: 'n', hiragana_id: Hiragana.find_by(character: 'ん').id },
+  # が行
+  { romaji: 'ga', hiragana_id: Hiragana.find_by(character: 'が').id },
+  { romaji: 'gi', hiragana_id: Hiragana.find_by(character: 'ぎ').id },
+  { romaji: 'gu', hiragana_id: Hiragana.find_by(character: 'ぐ').id },
+  { romaji: 'ge', hiragana_id: Hiragana.find_by(character: 'げ').id },
+  { romaji: 'go', hiragana_id: Hiragana.find_by(character: 'ご').id },
+  # ざ行
+  { romaji: 'za', hiragana_id: Hiragana.find_by(character: 'ざ').id },
+  { romaji: 'zi', hiragana_id: Hiragana.find_by(character: 'じ').id },
+  { romaji: 'zu', hiragana_id: Hiragana.find_by(character: 'ず').id },
+  { romaji: 'ze', hiragana_id: Hiragana.find_by(character: 'ぜ').id },
+  { romaji: 'zo', hiragana_id: Hiragana.find_by(character: 'ぞ').id },
+  # だ行
+  { romaji: 'da', hiragana_id: Hiragana.find_by(character: 'だ').id },
+  { romaji: 'di', hiragana_id: Hiragana.find_by(character: 'ぢ').id },
+  { romaji: 'du', hiragana_id: Hiragana.find_by(character: 'づ').id },
+  { romaji: 'de', hiragana_id: Hiragana.find_by(character: 'で').id },
+  { romaji: 'do', hiragana_id: Hiragana.find_by(character: 'ど').id },
+  # ば行
+  { romaji: 'ba', hiragana_id: Hiragana.find_by(character: 'ば').id },
+  { romaji: 'bi', hiragana_id: Hiragana.find_by(character: 'び').id },
+  { romaji: 'bu', hiragana_id: Hiragana.find_by(character: 'ぶ').id },
+  { romaji: 'be', hiragana_id: Hiragana.find_by(character: 'べ').id },
+  { romaji: 'bo', hiragana_id: Hiragana.find_by(character: 'ぼ').id },
+  # ぱ行
+  { romaji: 'pa', hiragana_id: Hiragana.find_by(character: 'ぱ').id },
+  { romaji: 'pi', hiragana_id: Hiragana.find_by(character: 'ぴ').id },
+  { romaji: 'pu', hiragana_id: Hiragana.find_by(character: 'ぷ').id },
+  { romaji: 'pe', hiragana_id: Hiragana.find_by(character: 'ぺ').id },
+  { romaji: 'po', hiragana_id: Hiragana.find_by(character: 'ぽ').id },
+  # きゃ行
+  { romaji: 'kya', hiragana_id: Hiragana.find_by(character: 'きゃ').id },
+  { romaji: 'kyu', hiragana_id: Hiragana.find_by(character: 'きゅ').id },
+  { romaji: 'kyo', hiragana_id: Hiragana.find_by(character: 'きょ').id },
+  # しゃ行
+  { romaji: 'sha', hiragana_id: Hiragana.find_by(character: 'しゃ').id },
+  { romaji: 'shu', hiragana_id: Hiragana.find_by(character: 'しゅ').id },
+  { romaji: 'sho', hiragana_id: Hiragana.find_by(character: 'しょ').id },
+  # ちゃ行
+  { romaji: 'cha', hiragana_id: Hiragana.find_by(character: 'ちゃ').id },
+  { romaji: 'chu', hiragana_id: Hiragana.find_by(character: 'ちゅ').id },
+  { romaji: 'cho', hiragana_id: Hiragana.find_by(character: 'ちょ').id },
+  # にゃ行
+  { romaji: 'nya', hiragana_id: Hiragana.find_by(character: 'にゃ').id },
+  { romaji: 'nyu', hiragana_id: Hiragana.find_by(character: 'にゅ').id },
+  { romaji: 'nyo', hiragana_id: Hiragana.find_by(character: 'にょ').id },
+  # ひゃ行
+  { romaji: 'hya', hiragana_id: Hiragana.find_by(character: 'ひゃ').id },
+  { romaji: 'hyu', hiragana_id: Hiragana.find_by(character: 'ひゅ').id },
+  { romaji: 'hyo', hiragana_id: Hiragana.find_by(character: 'ひょ').id },
+  # みゃ行
+  { romaji: 'mya', hiragana_id: Hiragana.find_by(character: 'みゃ').id },
+  { romaji: 'myu', hiragana_id: Hiragana.find_by(character: 'みゅ').id },
+  { romaji: 'myo', hiragana_id: Hiragana.find_by(character: 'みょ').id },
+  # りゃ行
+  { romaji: 'rya', hiragana_id: Hiragana.find_by(character: 'りゃ').id },
+  { romaji: 'ryu', hiragana_id: Hiragana.find_by(character: 'りゅ').id },
+  { romaji: 'ryo', hiragana_id: Hiragana.find_by(character: 'りょ').id },
+  # ぎゃ行
+  { romaji: 'gya', hiragana_id: Hiragana.find_by(character: 'ぎゃ').id },
+  { romaji: 'gyu', hiragana_id: Hiragana.find_by(character: 'ぎゅ').id },
+  { romaji: 'gyo', hiragana_id: Hiragana.find_by(character: 'ぎょ').id },
+  # じゃ行
+  { romaji: 'ja', hiragana_id: Hiragana.find_by(character: 'じゃ').id },
+  { romaji: 'ju', hiragana_id: Hiragana.find_by(character: 'じゅ').id },
+  { romaji: 'jo', hiragana_id: Hiragana.find_by(character: 'じょ').id },
+  # びゃ行
+  { romaji: 'bya', hiragana_id: Hiragana.find_by(character: 'びゃ').id },
+  { romaji: 'byu', hiragana_id: Hiragana.find_by(character: 'びゅ').id },
+  { romaji: 'byo', hiragana_id: Hiragana.find_by(character: 'びょ').id },
+  # ぴゃ行
+  { romaji: 'pya', hiragana_id: Hiragana.find_by(character: 'ぴゃ').id },
+  { romaji: 'pyu', hiragana_id: Hiragana.find_by(character: 'ぴゅ').id },
+  { romaji: 'pyo', hiragana_id: Hiragana.find_by(character: 'ぴょ').id },
+]
+
+hiragana_lao_records = [
+  { case_type: 'normal', lao: 'ອາ', romaji: 'a' },  # あ
+  { case_type: 'short', lao: 'ອະ', romaji: 'a' },   # あ (短母音)
+  { case_type: 'special_case', lao: 'ອັ', romaji: 'a' }, # あ (特殊ケース)
+  { case_type: 'normal', lao: 'ອີ', romaji: 'i' },  # い
+  { case_type: 'short', lao: 'ອິ', romaji: 'i' },   # い (短母音)
+  { case_type: 'special_case', lao: 'ອິ', romaji: 'i' }, # い (特殊ケース)
+  { case_type: 'normal', lao: 'ອູ', romaji: 'u' },  # う
+  { case_type: 'short', lao: 'ອຸ', romaji: 'u' },   # う (短母音)
+  { case_type: 'special_case', lao: 'ອຸ', romaji: 'u' }, # う (特殊ケース)
+  { case_type: 'normal', lao: 'ເອ', romaji: 'e' },  # え
+  { case_type: 'short', lao: 'ເອະ', romaji: 'e' },  # え (短母音)
+  { case_type: 'special_case', lao: 'ເອັ', romaji: 'e' }, # え (特殊ケース)
+  { case_type: 'normal', lao: 'ໂອ', romaji: 'o' },  # お
+  { case_type: 'short', lao: 'ໂອະ', romaji: 'o' },  # お (短母音)
+  { case_type: 'special_case', lao: 'ອົ', romaji: 'o' }, # お (特殊ケース)
+
+  # か行
+  { case_type: 'normal', lao: 'ຄາ', romaji: 'ka' }, # か
+  { case_type: 'short', lao: 'ຄະ', romaji: 'ka' },  # か (短母音)
+  { case_type: 'special_case', lao: 'ຄັ', romaji: 'ka' }, # か (特殊ケース)
+  { case_type: 'normal', lao: 'ຄີ', romaji: 'ki' }, # き
+  { case_type: 'short', lao: 'ຄິ', romaji: 'ki' },  # き (短母音)
+  { case_type: 'special_case', lao: 'ຄິ', romaji: 'ki' }, # き (特殊ケース)
+  { case_type: 'normal', lao: 'ຄູ', romaji: 'ku' }, # く
+  { case_type: 'short', lao: 'ຄຸ', romaji: 'ku' },  # く (短母音)
+  { case_type: 'special_case', lao: 'ຄຸ', romaji: 'ku' }, # く (特殊ケース)
+  { case_type: 'normal', lao: 'ເຄ', romaji: 'ke' }, # け
+  { case_type: 'short', lao: 'ເຄະ', romaji: 'ke' },  # け (短母音)
+  { case_type: 'special_case', lao: 'ເຄັ', romaji: 'ke' }, # け (特殊ケース)
+  { case_type: 'normal', lao: 'ໂຄ', romaji: 'ko' }, # こ
+  { case_type: 'short', lao: 'ໂຄະ', romaji: 'ko' },  # こ (短母音)
+  { case_type: 'special_case', lao: 'ຄົ', romaji: 'ko' }, # こ (特殊ケース)
+
+  # さ行
+  { case_type: 'normal', lao: 'ຊາ', romaji: 'sa' }, # さ
+  { case_type: 'short', lao: 'ຊະ', romaji: 'sa' },  # さ (短母音)
+  { case_type: 'special_case', lao: 'ຊັ', romaji: 'sa' }, # さ (特殊ケース)
+  { case_type: 'normal', lao: 'ຊີ', romaji: 'si' }, # し
+  { case_type: 'short', lao: 'ຊິ', romaji: 'si' },  # し (短母音)
+  { case_type: 'special_case', lao: 'ຊິ', romaji: 'si' }, # し (特殊ケース)
+  { case_type: 'normal', lao: 'ຊູ', romaji: 'su' }, # す
+  { case_type: 'short', lao: 'ຊຸ', romaji: 'su' },  # す (短母音)
+  { case_type: 'special_case', lao: 'ຊຸ', romaji: 'su' }, # す (特殊ケース)
+  { case_type: 'normal', lao: 'ເຊ', romaji: 'se' }, # せ
+  { case_type: 'short', lao: 'ເຊະ', romaji: 'se' },  # せ (短母音)
+  { case_type: 'special_case', lao: 'ເຊັ', romaji: 'se' }, # せ (特殊ケース)
+  { case_type: 'normal', lao: 'ໂຊ', romaji: 'so' }, # そ
+  { case_type: 'short', lao: 'ໂຊະ', romaji: 'so' },  # そ (短母音)
+  { case_type: 'special_case', lao: 'ຊົ', romaji: 'so' }, # そ (特殊ケース)
+
+  # た行
+  { case_type: 'normal', lao: 'ຕາ', romaji: 'ta' }, # た
+  { case_type: 'short', lao: 'ຕະ', romaji: 'ta' },  # た (短母音)
+  { case_type: 'special_case', lao: 'ຕັ', romaji: 'ta' }, # た (特殊ケース)
+  { case_type: 'normal', lao: 'ຈີ', romaji: 'ti' }, # ち
+  { case_type: 'short', lao: 'ຈິ', romaji: 'ti' },  # ち (短母音)
+  { case_type: 'special_case', lao: 'ຈີ', romaji: 'ti' }, # ち (特殊ケース)
+  { case_type: 'normal', lao: 'ສູ', romaji: 'tu' }, # つ
+  { case_type: 'short', lao: 'ສຸ', romaji: 'tu' },  # つ (短母音)
+  { case_type: 'special_case', lao: 'ສຸ', romaji: 'tu' }, # つ (特殊ケース)
+  { case_type: 'normal', lao: 'ເຕ', romaji: 'te' }, # て
+  { case_type: 'short', lao: 'ເຕະ', romaji: 'te' },  # て (短母音)
+  { case_type: 'special_case', lao: 'ເຕັ', romaji: 'te' }, # て (特殊ケース)
+  { case_type: 'normal', lao: 'ໂຕ', romaji: 'to' }, # と
+  { case_type: 'short', lao: 'ໂຕະ', romaji: 'to' },  # と (短母音)
+  { case_type: 'special_case', lao: 'ຕົ', romaji: 'to' }, # と (特殊ケース)
+
+  # な行
+  { case_type: 'normal', lao: 'ນາ', romaji: 'na' }, # な
+  { case_type: 'short', lao: 'ນະ', romaji: 'na' },  # な (短母音)
+  { case_type: 'special_case', lao: 'ນັ', romaji: 'na' }, # な (特殊ケース)
+  { case_type: 'normal', lao: 'ນີ', romaji: 'ni' }, # に
+  { case_type: 'short', lao: 'ນິ', romaji: 'ni' },  # に (短母音)
+  { case_type: 'special_case', lao: 'ນິ', romaji: 'ni' }, # に (特殊ケース)
+  { case_type: 'normal', lao: 'ນູ', romaji: 'nu' }, # ぬ
+  { case_type: 'short', lao: 'ນຸ', romaji: 'nu' },  # ぬ (短母音)
+  { case_type: 'special_case', lao: 'ນຸ', romaji: 'nu' }, # ぬ (特殊ケース)
+  { case_type: 'normal', lao: 'ເນ', romaji: 'ne' }, # ね
+  { case_type: 'short', lao: 'ເນະ', romaji: 'ne' },  # ね (短母音)
+  { case_type: 'special_case', lao: 'ເນັ', romaji: 'ne' }, # ね (特殊ケース)
+  { case_type: 'normal', lao: 'ໂນ', romaji: 'no' }, # の
+  { case_type: 'short', lao: 'ໂນະ', romaji: 'no' },  # の (短母音)
+  { case_type: 'special_case', lao: 'ນົ', romaji: 'no' }, # の (特殊ケース)
+
+  # は行
+  { case_type: 'normal', lao: 'ຫາ', romaji: 'ha' },  # は
+  { case_type: 'short', lao: 'ຫະ', romaji: 'ha' },  # は (短)
+  { case_type: 'special_case', lao: 'ຫັ', romaji: 'ha' },  # は (特別)
+  { case_type: 'normal', lao: 'ຫີ', romaji: 'hi' },  # ひ
+  { case_type: 'short', lao: 'ຫິ', romaji: 'hi' },  # ひ (短)
+  { case_type: 'special_case', lao: 'ຫິ', romaji: 'hi' },  # ひ (特別)
+  { case_type: 'normal', lao: 'ຫູ', romaji: 'hu' },  # ふ
+  { case_type: 'short', lao: 'ຫຸ', romaji: 'hu' },  # ふ (短)
+  { case_type: 'special_case', lao: 'ຫຸ', romaji: 'hu' },  # ふ (特別)
+  { case_type: 'normal', lao: 'ເຮ', romaji: 'he' },  # へ
+  { case_type: 'short', lao: 'ເຮະ', romaji: 'he' },  # へ (短)
+  { case_type: 'special_case', lao: 'ເຮັ', romaji: 'he' },  # へ (特別)
+  { case_type: 'normal', lao: 'ໂຮ', romaji: 'ho' },  # ほ
+  { case_type: 'short', lao: 'ໂຮະ', romaji: 'ho' },  # ほ (短)
+  { case_type: 'special_case', lao: 'ຮົ', romaji: 'ho' },  # ほ (特別)
+
+  # ま行
+  { case_type: 'normal', lao: 'ມາ', romaji: 'ma' },  # ま
+  { case_type: 'short', lao: 'ມະ', romaji: 'ma' },  # ま (短)
+  { case_type: 'special_case', lao: 'ມັ', romaji: 'ma' },  # ま (特別)
+  { case_type: 'normal', lao: 'ມີ', romaji: 'mi' },  # み
+  { case_type: 'short', lao: 'ມິ', romaji: 'mi' },  # み (短)
+  { case_type: 'special_case', lao: 'ມິ', romaji: 'mi' },  # み (特別)
+  { case_type: 'normal', lao: 'ມູ', romaji: 'mu' },  # む
+  { case_type: 'short', lao: 'ມຸ', romaji: 'mu' },  # む (短)
+  { case_type: 'special_case', lao: 'ມຸ', romaji: 'mu' },  # む (特別)
+  { case_type: 'normal', lao: 'ເມ', romaji: 'me' },  # め
+  { case_type: 'short', lao: 'ເມະ', romaji: 'me' },  # め (短)
+  { case_type: 'special_case', lao: 'ເມັ', romaji: 'me' },  # め (特別)
+  { case_type: 'normal', lao: 'ໂມ', romaji: 'mo' },  # も
+  { case_type: 'short', lao: 'ໂມະ', romaji: 'mo' },  # も (短)
+  { case_type: 'special_case', lao: 'ມົ', romaji: 'mo' },  # も (特別)
+
+  # や行
+  { case_type: 'normal', lao: 'ຢາ', romaji: 'ya' },  # や
+  { case_type: 'short', lao: 'ຢະ', romaji: 'ya' },  # や (短)
+  { case_type: 'special_case', lao: 'ຢັ', romaji: 'ya' },  # や (特別)
+  { case_type: 'normal', lao: 'ຢູ', romaji: 'yu' },  # ゆ
+  { case_type: 'short', lao: 'ຢຸ', romaji: 'yu' },  # ゆ (短)
+  { case_type: 'special_case', lao: 'ຢຸ', romaji: 'yu' },  # ゆ (特別)
+  { case_type: 'normal', lao: 'ຢົ', romaji: 'yo' },  # よ
+  { case_type: 'short', lao: 'ຢົະ', romaji: 'yo' },  # よ (短)
+  { case_type: 'special_case', lao: 'ຢົ', romaji: 'yo' },  # よ (特別)
+
+  # ら行
+  { case_type: 'normal', lao: 'ລາ', romaji: 'ra' },  # ら
+  { case_type: 'short', lao: 'ລະ', romaji: 'ra' },  # ら (短)
+  { case_type: 'special_case', lao: 'ລັ', romaji: 'ra' },  # ら (特別)
+  { case_type: 'normal', lao: 'ລີ', romaji: 'ri' },  # り
+  { case_type: 'short', lao: 'ລິ', romaji: 'ri' },  # り (短)
+  { case_type: 'special_case', lao: 'ລິ', romaji: 'ri' },  # り (特別)
+  { case_type: 'normal', lao: 'ລູ', romaji: 'ru' },  # る
+  { case_type: 'short', lao: 'ລຸ', romaji: 'ru' },  # る (短)
+  { case_type: 'special_case', lao: 'ລຸ', romaji: 'ru' },  # る (特別)
+  { case_type: 'normal', lao: 'ເຣ', romaji: 're' },  # れ
+  { case_type: 'short', lao: 'ເຣະ', romaji: 're' },  # れ (短)
+  { case_type: 'special_case', lao: 'ເຣັ', romaji: 're' },  # れ (特別)
+  { case_type: 'normal', lao: 'ໂຣ', romaji: 'ro' },  # ろ
+  { case_type: 'short', lao: 'ໂຣະ', romaji: 'ro' },  # ろ (短)
+  { case_type: 'special_case', lao: 'ຣົ', romaji: 'ro' },  # ろ (特別)
+
+  # わ行
+  { case_type: 'normal', lao: 'ວາ', romaji: 'wa' },  # わ
+  { case_type: 'short', lao: 'ວະ', romaji: 'wa' },  # わ (短)
+  { case_type: 'special_case', lao: 'ວັ', romaji: 'wa' },  # わ (特別)
+  { case_type: 'normal', lao: 'ວົ', romaji: 'wo' },  # を
+  { case_type: 'short', lao: 'ວະ', romaji: 'wo' },  # を (短)
+  { case_type: 'special_case', lao: 'ວັ', romaji: 'wo' },  # を (特別)
+  { case_type: 'normal', lao: 'ນ', romaji: 'n' },  # ん
+  { case_type: 'short', lao: 'ນ', romaji: 'n' },  # ん (短)
+  { case_type: 'special_case', lao: 'ນ', romaji: 'n' },  # ん (特別)
+
+  # が行
+  { case_type: 'normal', lao: 'ກາ', romaji: 'ga' },  # が
+  { case_type: 'short', lao: 'ກະ', romaji: 'ga' },  # が
+  { case_type: 'special_case', lao: 'ກັ', romaji: 'ga' },  # が
+  { case_type: 'normal', lao: 'ກິ', romaji: 'gi' },  # ぎ
+  { case_type: 'short', lao: 'ກິ', romaji: 'gi' },  # ぎ
+  { case_type: 'special_case', lao: 'ກິ', romaji: 'gi' },  # ぎ
+  { case_type: 'normal', lao: 'ກູ', romaji: 'gu' },  # ぐ
+  { case_type: 'short', lao: 'ກຸ', romaji: 'gu' },  # ぐ
+  { case_type: 'special_case', lao: 'ກຸ', romaji: 'gu' },  # ぐ
+  { case_type: 'normal', lao: 'ເກ', romaji: 'ge' },  # げ
+  { case_type: 'short', lao: 'ເກະ', romaji: 'ge' },  # げ
+  { case_type: 'special_case', lao: 'ເກັ', romaji: 'ge' },  # げ
+  { case_type: 'normal', lao: 'ໂກ', romaji: 'go' },  # ご
+  { case_type: 'short', lao: 'ໂກະ', romaji: 'go' },  # ご
+  { case_type: 'special_case', lao: 'ກົ', romaji: 'go' },  # ご
+
+  # ざ行
+  { case_type: 'normal', lao: 'ຊາ', romaji: 'za' },  # ざ
+  { case_type: 'short', lao: 'ຊະ', romaji: 'za' },  # ざ
+  { case_type: 'special_case', lao: 'ຊັ', romaji: 'za' },  # ざ
+  { case_type: 'normal', lao: 'ຈີ', romaji: 'zi' },  # じ
+  { case_type: 'short', lao: 'ຈິ', romaji: 'zi' },  # じ
+  { case_type: 'special_case', lao: 'ຈິ', romaji: 'zi' },  # じ
+  { case_type: 'normal', lao: 'ຊູ', romaji: 'zu' },  # ず
+  { case_type: 'short', lao: 'ຊຸ', romaji: 'zu' },  # ず
+  { case_type: 'special_case', lao: 'ຊຸ', romaji: 'zu' },  # ず
+  { case_type: 'normal', lao: 'ເຊ', romaji: 'ze' },  # ぜ
+  { case_type: 'short', lao: 'ເຊະ', romaji: 'ze' },  # ぜ
+  { case_type: 'special_case', lao: 'ເຊັ', romaji: 'ze' },  # ぜ
+  { case_type: 'normal', lao: 'ໂຊ', romaji: 'zo' },  # ぞ
+  { case_type: 'short', lao: 'ໂຊະ', romaji: 'zo' },  # ぞ
+  { case_type: 'special_case', lao: 'ຊົ', romaji: 'zo' },  # ぞ
+
+  # だ行
+  { case_type: 'normal', lao: 'ດາ', romaji: 'da' },  # だ
+  { case_type: 'short', lao: 'ດະ', romaji: 'da' },  # だ
+  { case_type: 'special_case', lao: 'ນັ', romaji: 'da' },  # だ
+  { case_type: 'normal', lao: 'ຈີ', romaji: 'di' },  # ぢ
+  { case_type: 'short', lao: 'ຈິ', romaji: 'di' },  # ぢ
+  { case_type: 'special_case', lao: 'ຈິ', romaji: 'di' },  # ぢ
+  { case_type: 'normal', lao: 'ຊູ', romaji: 'du' },  # づ
+  { case_type: 'short', lao: 'ຊຸ', romaji: 'du' },  # づ
+  { case_type: 'special_case', lao: 'ຊຸ', romaji: 'du' },  # づ
+  { case_type: 'normal', lao: 'ເດ', romaji: 'de' },  # で
+  { case_type: 'short', lao: 'ເດະ', romaji: 'de' },  # で
+  { case_type: 'special_case', lao: 'ເດັ', romaji: 'de' },  # で
+  { case_type: 'normal', lao: 'ໂດ', romaji: 'do' },  # ど
+  { case_type: 'short', lao: 'ໂດະ', romaji: 'do' },  # ど
+  { case_type: 'special_case', lao: 'ດົ', romaji: 'do' },  # ど
+
+  # ば行
+  { case_type: 'normal', lao: 'ບາ', romaji: 'ba' },  # ば
+  { case_type: 'short', lao: 'ບະ', romaji: 'ba' },  # ば
+  { case_type: 'special_case', lao: 'ບັ', romaji: 'ba' },  # ば
+  { case_type: 'normal', lao: 'ບີ', romaji: 'bi' },  # び
+  { case_type: 'short', lao: 'ບິ', romaji: 'bi' },  # び
+  { case_type: 'special_case', lao: 'ບິ', romaji: 'bi' },  # び
+  { case_type: 'normal', lao: 'ບູ', romaji: 'bu' },  # ぶ
+  { case_type: 'short', lao: 'ບຸ', romaji: 'bu' },  # ぶ
+  { case_type: 'special_case', lao: 'ບຸ', romaji: 'bu' },  # ぶ
+  { case_type: 'normal', lao: 'ເບ', romaji: 'be' },  # べ
+  { case_type: 'short', lao: 'ເບະ', romaji: 'be' },  # べ
+  { case_type: 'special_case', lao: 'ເບັ', romaji: 'be' },  # べ
+  { case_type: 'normal', lao: 'ໂບ', romaji: 'bo' },  # ぼ
+  { case_type: 'short', lao: 'ໂບະ', romaji: 'bo' },  # ぼ
+  { case_type: 'special_case', lao: 'ບົ', romaji: 'bo' },  # ぼ
+
+  # ぱ行
+  { case_type: 'normal', lao: 'ປາ', romaji: 'pa' },  # ぱ
+  { case_type: 'short', lao: 'ປະ', romaji: 'pa' },  # ぱ
+  { case_type: 'special_case', lao: 'ປັ', romaji: 'pa' },  # ぱ
+  { case_type: 'normal', lao: 'ປິ', romaji: 'pi' },  # ぴ
+  { case_type: 'short', lao: 'ປິ', romaji: 'pi' },  # ぴ
+  { case_type: 'special_case', lao: 'ປິ', romaji: 'pi' },  # ぴ
+  { case_type: 'normal', lao: 'ປູ', romaji: 'pu' },  # ぷ
+  { case_type: 'short', lao: 'ປຸ', romaji: 'pu' },  # ぷ
+  { case_type: 'special_case', lao: 'ປຸ', romaji: 'pu' },  # ぷ
+  { case_type: 'normal', lao: 'ເພ', romaji: 'pe' },  # ぺ
+  { case_type: 'short', lao: 'ເພະ', romaji: 'pe' },  # ぺ
+  { case_type: 'special_case', lao: 'ເພັ', romaji: 'pe' },  # ぺ
+  { case_type: 'normal', lao: 'ໂປ', romaji: 'po' },  # ぽ
+  { case_type: 'short', lao: 'ໂປະ', romaji: 'po' },  # ぽ
+  { case_type: 'special_case', lao: 'ປົ', romaji: 'po' }  # ぽ
+
+  # きゃ行 
+  { case_type: 'normal', lao: 'ເຄຍ', romaji: 'kya' },  # きゃ
+  { case_type: 'short', lao: 'ເຄັຍ', romaji: 'kya' },   # きゃ
+  { case_type: 'special_case', lao: 'ເຄັຍ', romaji: 'kya' }, # きゃ
+  { case_type: 'normal', lao: 'ຄີວ', romaji: 'kyu' },  # きゅ
+  { case_type: 'short', lao: 'ຄິວ', romaji: 'kyu' },   # きゅ
+  { case_type: 'special_case', lao: 'ຄິວ', romaji: 'kyu' }, # きゅ
+  { case_type: 'normal', lao: 'ຄຽວ', romaji: 'kyo' },  # きょ
+  { case_type: 'short', lao: 'ຄຽວ', romaji: 'kyo' },   # きょ
+  { case_type: 'special_case', lao: 'ຄຽວ', romaji: 'kyo' }, # きょ
+
+  # しゃ行
+  { case_type: 'normal', lao: 'ເຊຍ', romaji: 'sha' },  # しゃ
+  { case_type: 'short', lao: 'ເຊັຍ', romaji: 'sha' },   # しゃ
+  { case_type: 'special_case', lao: 'ຊຽ', romaji: 'sha' }, # しゃ
+  { case_type: 'normal', lao: 'ຊີວ', romaji: 'shu' },  # しゅ
+  { case_type: 'short', lao: 'ຊິວ', romaji: 'shu' },   # しゅ
+  { case_type: 'special_case', lao: 'ຊິວ', romaji: 'shu' }, # しゅ
+  { case_type: 'normal', lao: 'ຊຽວ', romaji: 'sho' },  # しょ
+  { case_type: 'short', lao: 'ຊຽວ', romaji: 'sho' },   # しょ
+  { case_type: 'special_case', lao: 'ຊຽວ', romaji: 'sho' }, # しょ
+
+  # ちゃ行
+  { case_type: 'normal', lao: 'ຈາ', romaji: 'cha' },  # ちゃ
+  { case_type: 'short', lao: 'ຈະ', romaji: 'cha' },   # ちゃ
+  { case_type: 'special_case', lao: 'ຈັ', romaji: 'cha' }, # ちゃ
+  { case_type: 'normal', lao: 'ຈູ', romaji: 'chu' },  # ちゅ
+  { case_type: 'short', lao: 'ຈຸ', romaji: 'chu' },   # ちゅ
+  { case_type: 'special_case', lao: 'ຈຸ', romaji: 'chu' }, # ちゅ
+  { case_type: 'normal', lao: 'ໂຈ', romaji: 'cho' },  # ちょ
+  { case_type: 'short', lao: 'ໂຈະ', romaji: 'cho' },   # ちょ
+  { case_type: 'special_case', lao: 'ຈົ', romaji: 'cho' }, # ちょ
+
+  # にゃ行
+  { case_type: 'normal', lao: 'ຍາ', romaji: 'nya' },  # にゃ
+  { case_type: 'short', lao: 'ຍະ', romaji: 'nya' },   # にゃ
+  { case_type: 'special_case', lao: 'ຍັ', romaji: 'nya' }, # にゃ
+  { case_type: 'normal', lao: 'ຍູ', romaji: 'nyu' },  # にゅ
+  { case_type: 'short', lao: 'ຍຸ', romaji: 'nyu' },   # にゅ
+  { case_type: 'special_case', lao: 'ຍຸ', romaji: 'nyu' }, # にゅ
+  { case_type: 'normal', lao: 'ໂຍ', romaji: 'nyo' },  # にょ
+  { case_type: 'short', lao: 'ໂຍະ', romaji: 'nyo' },   # にょ
+  { case_type: 'special_case', lao: 'ຍົ', romaji: 'nyo' }, # にょ
+
+  # ひゃ行
+  { case_type: 'normal', lao: 'ເຮຍ', romaji: 'hya' },  # ひゃ
+  { case_type: 'short', lao: 'ເຮັຍ', romaji: 'hya' },   # ひゃ
+  { case_type: 'special_case', lao: 'ຮຽ', romaji: 'hya' }, # ひゃ
+  { case_type: 'normal', lao: 'ຮີວ', romaji: 'hyu' },  # ひゅ
+  { case_type: 'short', lao: 'ຮິວ', romaji: 'hyu' },   # ひゅ
+  { case_type: 'special_case', lao: 'ຮິວ', romaji: 'hyu' }, # ひゅ
+  { case_type: 'normal', lao: 'ຮຽວ', romaji: 'hyo' },  # ひょ
+  { case_type: 'short', lao: 'ຮຽວ', romaji: 'hyo' },   # ひょ
+  { case_type: 'special_case', lao: 'ຮຽວ', romaji: 'hyo' }, # ひょ
+
+  # みゃ行
+  { case_type: 'normal', lao: 'ເມຍ', romaji: 'mya' },  # みゃ
+  { case_type: 'short', lao: 'ເມັຍ', romaji: 'mya' },   # みゃ
+  { case_type: 'special_case', lao: 'ມຽ', romaji: 'mya' }, # みゃ
+  { case_type: 'normal', lao: 'ມີວ', romaji: 'myu' },  # みゅ
+  { case_type: 'short', lao: 'ມິວ', romaji: 'myu' },   # みゅ
+  { case_type: 'special_case', lao: 'ມິວ', romaji: 'myu' }, # みゅ
+  { case_type: 'normal', lao: 'ມຽວ', romaji: 'myo' },  # みょ
+  { case_type: 'short', lao: 'ມຽວ', romaji: 'myo' },   # みょ
+  { case_type: 'special_case', lao: 'ມຽວ', romaji: 'myo' }, # みょ
+
+  # りゃ行
+  { case_type: 'normal', lao: 'ລາ', romaji: 'rya' },  # りゃ
+  { case_type: 'short', lao: 'ລະ', romaji: 'rya' },   # りゃ
+  { case_type: 'special_case', lao: 'ລັ', romaji: 'rya' }, # りゃ
+  { case_type: 'normal', lao: 'ລູ', romaji: 'ryu' },  # りゅ
+  { case_type: 'short', lao: 'ລຸ', romaji: 'ryu' },   # りゅ
+  { case_type: 'special_case', lao: 'ລຸ', romaji: 'ryu' }, # りゅ
+  { case_type: 'normal', lao: 'ໂຣ', romaji: 'ryo' },  # りょ
+  { case_type: 'short', lao: 'ໂລ', romaji: 'ryo' },   # りょ
+  { case_type: 'special_case', lao: 'ລົ', romaji: 'ryo' }, # りょ
+
+  # ぎゃ行
+  { case_type: 'normal', lao: 'ເກຍ', romaji: 'gya' },  # ぎゃ
+  { case_type: 'short', lao: 'ເກັຍ', romaji: 'gya' },   # ぎゃ
+  { case_type: 'special_case', lao: 'ກຽ', romaji: 'gya' },  # ぎゃ
+  { case_type: 'normal', lao: 'ກີວ', romaji: 'gyu' },  # ぎゅ
+  { case_type: 'short', lao: 'ກິວ', romaji: 'gyu' },   # ぎゅ
+  { case_type: 'special_case', lao: 'ກິວ', romaji: 'gyu' },  # ぎゅ
+  { case_type: 'normal', lao: 'ກຽວ', romaji: 'gyo' },  # ぎょ
+  { case_type: 'short', lao: 'ກຽວ', romaji: 'gyo' },   # ぎょ
+  { case_type: 'special_case', lao: 'ກຽວ', romaji: 'gyo' },  # ぎょ
+
+  # じゃ行
+  { case_type: 'normal', lao: 'ຈາ', romaji: 'ja' },  # じゃ
+  { case_type: 'short', lao: 'ຈະ', romaji: 'ja' },   # じゃ
+  { case_type: 'special_case', lao: 'ຈັ', romaji: 'ja' },  # じゃ
+  { case_type: 'normal', lao: 'ຈູ', romaji: 'ju' },  # じゅ
+  { case_type: 'short', lao: 'ຈຸ', romaji: 'ju' },   # じゅ
+  { case_type: 'special_case', lao: 'ຈຸ', romaji: 'ju' },  # じゅ
+  { case_type: 'normal', lao: 'ໂຈ', romaji: 'jo' },  # じょ
+  { case_type: 'short', lao: 'ໂຈະ', romaji: 'jo' },   # じょ
+  { case_type: 'special_case', lao: 'ຈົ', romaji: 'jo' },  # じょ
+
+  # びゃ行
+  { case_type: 'normal', lao: 'ເບຍ', romaji: 'bya' },  # びゃ
+  { case_type: 'short', lao: 'ເບັຍ', romaji: 'bya' },   # びゃ
+  { case_type: 'special_case', lao: 'ບຽ', romaji: 'bya' },  # びゃ
+  { case_type: 'normal', lao: 'ບິວ', romaji: 'byu' },  # びゅ
+  { case_type: 'short', lao: 'ບິວ', romaji: 'byu' },   # びゅ
+  { case_type: 'special_case', lao: 'ບິວ', romaji: 'byu' },  # びゅ
+  { case_type: 'normal', lao: 'ບຽວ', romaji: 'byo' },  # びょ
+  { case_type: 'short', lao: 'ບຽວ', romaji: 'byo' },   # びょ
+  { case_type: 'special_case', lao: 'ບຽວ', romaji: 'byo' },  # びょ
+
+  # ぴゃ行
+  { case_type: 'normal', lao: 'ເປຍ', romaji: 'pya' },  # ぴゃ
+  { case_type: 'short', lao: 'ເປັຍ', romaji: 'pya' },   # ぴゃ
+  { case_type: 'special_case', lao: 'ປຽ', romaji: 'pya' },  # ぴゃ
+  { case_type: 'normal', lao: 'ປີວ', romaji: 'pyu' },  # ぴゅ
+  { case_type: 'short', lao: 'ປິວ', romaji: 'pyu' },   # ぴゅ
+  { case_type: 'special_case', lao: 'ປິວ', romaji: 'pyu' },  # ぴゅ
+  { case_type: 'normal', lao: 'ປຽວ', romaji: 'pyo' },  # ぴょ
+  { case_type: 'short', lao: 'ປຽວ', romaji: 'pyo' },   # ぴょ
+  { case_type: 'special_case', lao: 'ປຽວ', romaji: 'pyo' }   # ぴょ
+]
+
 hiragana_lao_records.each do |record|
   HiraganaLao.create(record)
 end
+=end
