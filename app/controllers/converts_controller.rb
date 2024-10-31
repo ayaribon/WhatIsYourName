@@ -39,6 +39,7 @@ class ConvertsController < ApplicationController
       "つ" => "ສູ",
       "て" => "ເຕ",
       "と" => "ໂຕ",
+      "っ" => "ສ",
 
       # な行
       "な" => "ນາ",
@@ -68,7 +69,7 @@ class ConvertsController < ApplicationController
 
       # ら行
       "ら" => "ຣາ",
-      "ら" => "ຣີ",
+      "り" => "ຣີ",
       "る" => "ຣູ",
       "れ" => "ເຣ",
       "ろ" => "ໂຣ",
@@ -186,6 +187,7 @@ class ConvertsController < ApplicationController
 
       # た行
       "た" => "ຕະ", "ち" => "ຈິ", "つ" => "ສຸ", "て" => "ເຕະ", "と" => "ໂຕະ",
+      "っ" => "ສ",
 
       # な行
       "な" => "ນະ", "に" => "ນິ", "ぬ" => "ນຸ", "ね" => "ເນະ", "の" => "ໂນະ",
@@ -278,7 +280,7 @@ class ConvertsController < ApplicationController
       "さ" => "ຊັ", "し" => "ຊິ", "す" => "ຊຸ", "せ" => "ເຊັ", "そ" => "ຊົ",
 
       # た行
-      "た" => "ຕັ", "ち" => "ຈິ", "つ" => "ສຸ", "て" => "ເຕັ", "と" => "ຕົ",
+      "た" => "ຕັ", "ち" => "ຈິ", "つ" => "ສຸ", "て" => "ເຕັ", "と" => "ຕົ", "っ" => "ສ",
 
       # な行
       "な" => "ນັ", "に" => "ນິ", "ぬ" => "ນຸ", "ね" => "ເນັ", "の" => "ນົ",
@@ -441,11 +443,23 @@ class ConvertsController < ApplicationController
 
       characters.each_with_index do |char, index|
         next_char = characters[index + 1] if index + 1 < characters.length
-
-        if %w[ぁ ぃ ぅ ぇ ぉ ゃ ゅ ょ].include?(char) && prev_char && hiragana_to_lao_long[prev_char + char]
+        if char == "っ"
+          next
+        elsif char == "ー"
+          next
+        elsif %w[ぁ ぃ ぅ ぇ ぉ ゃ ゅ ょ].include?(char) && prev_char && hiragana_to_lao_long[prev_char + char]
           # 拗音の処理：前の文字と拗音を組み合わせて変換
           converted_word.pop  # 前の変換結果を削除
-          converted_word << (hiragana_to_lao_long[prev_char + char] || prev_char + char)
+
+          # 拗音かつ次の条件に該当する場合、短または特のラオス文字にする
+          lao_char = if next_char == "ん"
+                       hiragana_to_lao_special[prev_char + char] # 特のラオス文字
+          elsif next_char == "っ" || index == characters.length - 1
+                       hiragana_to_lao_short[prev_char + char]   # 短のラオス文字
+          else
+                       hiragana_to_lao_long[prev_char + char]    # 長のラオス文字
+          end
+          converted_word << (lao_char || prev_char + char)
         elsif %w[い う].include?(char) && prev_char && (
             (char == "い" && hiragana_rows[prev_char] == 4) ||
             (char == "う" && hiragana_rows[prev_char] == 5)
@@ -462,10 +476,6 @@ class ConvertsController < ApplicationController
           if next_char == "っ"
               converted_word << (hiragana_to_lao_short[char] || char)
             # 「っ」の前のひらがなは短のラオス文字になる
-          elsif char == "っ"
-            next
-          elsif char == "ー"
-            next
           elsif next_char == "ん"
             # 「ん」の前のひらがなは特のラオス文字になる
             converted_word << (hiragana_to_lao_special[char] || char)
