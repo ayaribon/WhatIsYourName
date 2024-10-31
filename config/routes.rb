@@ -22,10 +22,9 @@ Rails.application.routes.draw do
   # 新規登録関連のルート
   resources :users, only: [ :new, :create ]
 
-    # newアクションを使って変換ページを表示
-  get 'new', to: 'converts#new'
+  # newアクションを使って変換ページを表示
+  get "new", to: "converts#new"
 
   # ひらがなをラオス文字に変換するPOSTリクエスト
-  post 'convert', to: 'converts#convert'
-
+  post "convert", to: "converts#convert"
 end

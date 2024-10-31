@@ -9,7 +9,7 @@
 #   end
 
 =begin
-hiragana_records = [ 
+hiragana_records = [
   { character: 'あ', romaji: 'a' },
   { character: 'い', romaji: 'i' },
   { character: 'う', romaji: 'u' },
@@ -531,7 +531,7 @@ hiragana_lao_records = [
   { case_type: 'short', lao: 'ໂປະ', romaji: 'po' },  # ぽ
   { case_type: 'special_case', lao: 'ປົ', romaji: 'po' }  # ぽ
 
-  # きゃ行 
+  # きゃ行
   { case_type: 'normal', lao: 'ເຄຍ', romaji: 'kya' },  # きゃ
   { case_type: 'short', lao: 'ເຄັຍ', romaji: 'kya' },   # きゃ
   { case_type: 'special_case', lao: 'ເຄັຍ', romaji: 'kya' }, # きゃ
