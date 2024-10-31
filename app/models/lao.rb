@@ -1,2 +1,0 @@
-class Lao < ApplicationRecord
-end

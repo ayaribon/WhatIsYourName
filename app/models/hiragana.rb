@@ -1,2 +1,0 @@
-class Hiragana < ApplicationRecord
-end
